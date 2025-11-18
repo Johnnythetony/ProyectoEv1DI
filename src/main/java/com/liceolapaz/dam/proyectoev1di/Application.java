@@ -12,13 +12,7 @@ public class Application extends javafx.application.Application
     @Override
     public void start(Stage stage) throws IOException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.initStyle(StageStyle.TRANSPARENT);
-        scene.getStylesheets().add(Application.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
-        stage.resizableProperty().setValue(Boolean.FALSE);
-        stage.setScene(scene);
-        stage.show();
+        ViewHandler.initStage(ViewList.LOGIN.getFXML());
     }
 
     public static void main(String[] args) {
