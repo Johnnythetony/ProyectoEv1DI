@@ -1,4 +1,4 @@
-package com.liceolapaz.dam.proyectoev1di;
+package com.liceolapaz.dam.proyectoev1di.Controllers;
 
 import javafx.fxml.Initializable;
 

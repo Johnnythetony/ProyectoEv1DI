@@ -7,4 +7,6 @@ module com.liceolapaz.dam.proyectoev1di {
 
     opens com.liceolapaz.dam.proyectoev1di to javafx.fxml;
     exports com.liceolapaz.dam.proyectoev1di;
+    exports com.liceolapaz.dam.proyectoev1di.Controllers;
+    opens com.liceolapaz.dam.proyectoev1di.Controllers to javafx.fxml;
 }
