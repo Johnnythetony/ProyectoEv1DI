@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.control.Button?>
+
+<HBox fx:id="window_bar" alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.dam.proyectoev1di.WindowBarController">
+<children>
+    <Button mnemonicParsing="false" onAction="#onAppMinimizing" prefHeight="50.0" prefWidth="60.0" styleClass="button_stage" text="_" />
+    <Button mnemonicParsing="false" onAction="#onAppClosing" prefHeight="50.0" prefWidth="60.0" styleClass="button_stage" text="X">
+        <effect>
+            <Blend />
+        </effect>
+    </Button>
+</children>
+</HBox>

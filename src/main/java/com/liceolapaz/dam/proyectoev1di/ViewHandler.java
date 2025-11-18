@@ -1,8 +1,10 @@
 package com.liceolapaz.dam.proyectoev1di;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -19,12 +21,17 @@ public class ViewHandler
             scene.getStylesheets().add(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.initStyle(StageStyle.TRANSPARENT);
             alert.setContentText("No se pudo cargar la vista");
             alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
+
+            //ToDo Usar para localizar errores
+            //e.printStackTrace();
+
             alert.showAndWait();
         }
     }
@@ -42,6 +49,11 @@ public class ViewHandler
             stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(view));
             Scene scene = new Scene(fxmlLoader.load());
+
+            FXMLLoader fxmlLoaderWBar = new FXMLLoader(ViewHandler.class.getResource(ViewList.WINDOWBAR.getFXML()));
+            Node wbar = fxmlLoaderWBar.load();
+            ((BorderPane)scene.getRoot()).setTop(wbar);
+
             stage.initStyle(StageStyle.TRANSPARENT);
             scene.getStylesheets().add(Application.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
             stage.resizableProperty().setValue(Boolean.FALSE);
@@ -54,6 +66,10 @@ public class ViewHandler
             alert.initStyle(StageStyle.TRANSPARENT);
             alert.setContentText("No se pudo cargar la ventana");
             alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
+
+            //ToDo Usar para localizar errores
+            //e.printStackTrace();
+
             alert.showAndWait();
         }
     }
