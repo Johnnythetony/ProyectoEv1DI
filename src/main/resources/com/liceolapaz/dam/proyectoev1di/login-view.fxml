@@ -43,7 +43,7 @@
                         <Insets bottom="30.0" top="10.0" />
                     </VBox.margin></Button>
                 <Label text="No tienes cuenta? Regístrate aquí!" />
-                <Button mnemonicParsing="false" text="Registrarme" />
+                <Button mnemonicParsing="false" text="Registrarme" onAction="#goToRegister"/>
             </children>
         </VBox>
     </center>
