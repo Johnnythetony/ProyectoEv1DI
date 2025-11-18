@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.effect.Blend?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.dam.proyectoev1di.RegisterController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" text="Registrarse" />
+            <Button mnemonicParsing="false" text="Volver a login" />
+         </children>
+      </HBox>
+   </bottom>
+    <center>
+    </center>
+    <top>
+        <HBox fx:id="window_bar" alignment="TOP_RIGHT" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button mnemonicParsing="false" onAction="#onAppMinimizing" prefHeight="50.0" prefWidth="60.0" styleClass="button_stage" text="_" />
+                <Button mnemonicParsing="false" onAction="#onAppClosing" prefHeight="50.0" prefWidth="60.0" styleClass="button_stage" text="X">
+                    <effect>
+                        <Blend />
+                    </effect>
+                </Button>
+            </children>
+        </HBox>
+    </top>
+</BorderPane>
