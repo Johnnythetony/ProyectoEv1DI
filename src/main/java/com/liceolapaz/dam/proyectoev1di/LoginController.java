@@ -31,6 +31,7 @@ public class LoginController implements Initializable
 
         makeDraggable();
 
+        login_icon.setImage(new Image(String.valueOf(getClass().getResource("/images/login-icon.png").toExternalForm())));
         login_icon.setPreserveRatio(true);
     }
 
