@@ -6,8 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.io.IOException;
-
 public class ViewHandler
 {
     private static Stage stage;
@@ -21,12 +19,12 @@ public class ViewHandler
             scene.getStylesheets().add(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e)
+        } catch (Exception e)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
+            alert.initStyle(StageStyle.TRANSPARENT);
             alert.setContentText("No se pudo cargar la vista");
-            alert.getGraphic().setStyle(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
+            alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
             alert.showAndWait();
         }
     }
@@ -50,12 +48,12 @@ public class ViewHandler
             stage.setScene(scene);
             stage.show();
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
+            alert.initStyle(StageStyle.TRANSPARENT);
             alert.setContentText("No se pudo cargar la ventana");
-            alert.getGraphic().setStyle(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
+            alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
             alert.showAndWait();
         }
     }
