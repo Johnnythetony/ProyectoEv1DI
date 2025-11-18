@@ -76,7 +76,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.liceolapaz.dam.proyectoev1di/com.liceolapaz.dam.proyectoev1di.HelloApplication
+                                com.liceolapaz.dam.proyectoev1di/com.liceolapaz.dam.proyectoev1di.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
