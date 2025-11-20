@@ -30,7 +30,7 @@ public class ViewHandler
             alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
 
             //ToDo Usar para localizar errores
-            //e.printStackTrace();
+            e.printStackTrace();
 
             alert.showAndWait();
         }
@@ -68,7 +68,7 @@ public class ViewHandler
             alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource("/stylesheets/backloggd-stylesheet.css").toExternalForm());
 
             //ToDo Usar para localizar errores
-            //e.printStackTrace();
+            e.printStackTrace();
 
             alert.showAndWait();
         }

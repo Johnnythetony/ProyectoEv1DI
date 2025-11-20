@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.dam.proyectoev1di.Controllers.RegisterController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.dam.proyectoev1di.Controllers.RegisterController">
    <bottom>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
@@ -13,6 +13,10 @@
          </children>
       </HBox>
    </bottom>
-    <center>
-    </center>
+    <right>
+        <VBox prefWidth="50"></VBox>
+    </right>
+    <left>
+        <VBox prefWidth="50"></VBox>
+    </left>
 </BorderPane>
