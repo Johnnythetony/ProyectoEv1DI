@@ -16,8 +16,8 @@ public class WindowBarController implements Initializable
     @FXML
     private HBox window_bar;
 
-    private double xOffset = 0;
-    private double yOffset = 0;
+    private double x_offset = 0;
+    private double y_offset = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -34,7 +34,7 @@ public class WindowBarController implements Initializable
     @FXML
     public void onAppMinimizing(ActionEvent event)
     {
-        Stage stage = (Stage) window_bar.getScene().getWindow();
+        Stage stage = (Stage) ((Stage) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
 
@@ -42,16 +42,31 @@ public class WindowBarController implements Initializable
     public void makeDraggable()
     {
         window_bar.setOnMousePressed(event -> {
-            xOffset = event.getSceneX();
-            yOffset = event.getSceneY();
+            x_offset = event.getSceneX();
+            y_offset = event.getSceneY();
         });
 
         window_bar.setOnMouseDragged(event -> {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-            stage.setX(event.getScreenX() - xOffset);
+            stage.setX(event.getScreenX() - x_offset);
 
-            stage.setY(event.getScreenY() - yOffset);
+            stage.setY(event.getScreenY() - y_offset);
         });
+    }
+
+    @FXML
+    public void onAppMaximizing(ActionEvent event)
+    {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        if (stage.isMaximized())
+        {
+            stage.setMaximized(false);
+        }
+        else
+        {
+            stage.setMaximized(true);
+        }
     }
 }

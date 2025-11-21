@@ -2,7 +2,7 @@ package com.liceolapaz.dam.proyectoev1di.ResourcePaths;
 
 public enum Stylesheets
 {
-    DEFAULT("backloggd-resource_path.css");
+    DEFAULT("backloggd-stylesheet.css");
 
     private final String resource_path;
 
