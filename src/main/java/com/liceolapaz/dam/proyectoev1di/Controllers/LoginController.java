@@ -1,7 +1,8 @@
 package com.liceolapaz.dam.proyectoev1di.Controllers;
 
+import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Images;
 import com.liceolapaz.dam.proyectoev1di.ViewHandler;
-import com.liceolapaz.dam.proyectoev1di.ViewList;
+import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Views;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,13 +20,13 @@ public class LoginController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-        login_icon.setImage(new Image(String.valueOf(getClass().getResource("/images/login-icon.png").toExternalForm())));
+        login_icon.setImage(new Image(String.valueOf(getClass().getResource(Images.LOGIN_ICON.getResource_path()).toExternalForm())));
         login_icon.setPreserveRatio(true);
     }
 
     @FXML
     public void goToRegister(ActionEvent event)
     {
-        ViewHandler.loadStage(ViewList.REGISTER.getFXML());
+        ViewHandler.loadStage(Views.REGISTER.getFXML());
     }
 }

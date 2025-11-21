@@ -1,6 +1,6 @@
-package com.liceolapaz.dam.proyectoev1di;
+package com.liceolapaz.dam.proyectoev1di.ResourcePaths;
 
-public enum ViewList 
+public enum Views
 {
     LOGIN("login-view.fxml"),
     REGISTER("register-view.fxml"),
@@ -8,7 +8,7 @@ public enum ViewList
 
     private final String fxml;
 
-    ViewList(String fxml)
+    Views(String fxml)
     {
         this.fxml = fxml;
     }

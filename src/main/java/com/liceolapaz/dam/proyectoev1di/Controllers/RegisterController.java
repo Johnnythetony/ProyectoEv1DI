@@ -21,10 +21,10 @@ public class RegisterController implements Initializable
     //ToDo Implementar codigo a los Predicates para conectarlos al servicio de Usuario y
     //     poder comprobar si los datos ya existen en la bbdd
     private Predicate<String> name = value -> value.matches("nombre");
-    private Predicate<String> password = value -> {
+    private Predicate<String> mail = value -> {
         return true;
     };
-    private Predicate<String> mail = value -> {
+    private Predicate<String> password = value -> {
         return true;
     };
     private Predicate<String> repeat_password = value -> {
