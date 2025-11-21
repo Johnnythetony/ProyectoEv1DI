@@ -4,7 +4,8 @@ public enum Views
 {
     LOGIN("login-view.fxml"),
     REGISTER("register-view.fxml"),
-    WINDOWBAR("window-bar.fxml");
+    WINDOWBAR("window-bar.fxml"),
+    USERMENU("user-menu.fxml");
 
     private final String fxml;
 

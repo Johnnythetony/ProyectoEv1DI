@@ -29,4 +29,11 @@ public class LoginController implements Initializable
     {
         ViewHandler.loadStage(Views.REGISTER.getFXML());
     }
+
+    @FXML
+    public void manageLogin(ActionEvent event)
+    {
+        //ToDo Implementar logica de login
+        ViewHandler.loadStage(Views.USERMENU.getFXML());
+    }
 }
