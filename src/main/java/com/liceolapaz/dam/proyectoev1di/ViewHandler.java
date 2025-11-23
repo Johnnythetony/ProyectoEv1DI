@@ -10,9 +10,32 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+
 public class ViewHandler
 {
     private static Stage stage;
+
+    public static Node getNode(String view)
+    {
+        try
+        {
+            FXMLLoader loader = new FXMLLoader(ViewHandler.class.getResource(view));
+            return loader.load();
+        }
+        catch (Exception e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initStyle(StageStyle.TRANSPARENT);
+            alert.setContentText("No se pudo cargar la vista");
+            alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource(Stylesheets.DEFAULT.getResource_path()).toExternalForm());
+
+            //ToDo Usar para localizar errores
+            e.printStackTrace();
+
+            alert.showAndWait();
+        }
+        return null;
+    }
 
     public static void loadScene(String view)
     {
