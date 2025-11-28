@@ -4,9 +4,9 @@ import com.liceolapaz.dam.proyectoev1di.DTO.UsuarioDTO;
 
 public interface UsuarioDAO
 {
-    void createUser(UsuarioDTO usuario);
-    void updateUser(UsuarioDTO usuario);
-    void deleteUser(UsuarioDTO usuario);
+    void createUser(Usuario usuario);
+    void updateUser(Usuario usuario);
+    void deleteUser(Usuario usuario);
 
     void verifyUser(String username, String password);
     void getUser(String username);

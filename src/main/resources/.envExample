@@ -2,3 +2,5 @@ DB_URL=<Database URL>
 DB_DRIVER_MYSQL=<MySQL Driver>
 DB_USER_MYSQL=<Database username>
 DB_PASSWORD_MYSQL=<Database user password>
+DB_DIALECT=<Database dialect>
+HBN2DDL_AUTO=<Database creation protocol>
