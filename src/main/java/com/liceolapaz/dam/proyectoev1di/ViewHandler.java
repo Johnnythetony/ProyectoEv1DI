@@ -61,6 +61,11 @@ public class ViewHandler
         }
     }
 
+    public static void setResizableStage(boolean resizable)
+    {
+        stage.setResizable(resizable);
+    }
+
     public static void loadStage(String view)
     {
         stage.close();
