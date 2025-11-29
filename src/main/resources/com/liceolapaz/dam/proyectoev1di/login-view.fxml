@@ -18,7 +18,7 @@
                         <Insets bottom="20.0" />
                     </VBox.margin></ImageView>
                 <Label text="Usuario" />
-                <TextField>
+                <TextField fx:id="usernameTF">
                     <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin>
@@ -27,7 +27,7 @@
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin></Label>
-                <PasswordField>
+                <PasswordField fx:id="passwordTF">
                     <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin>

@@ -1,7 +1,5 @@
 package com.liceolapaz.dam.proyectoev1di;
 
-import com.liceolapaz.dam.proyectoev1di.DAO.Usuario;
-import com.liceolapaz.dam.proyectoev1di.DAO.UsuarioDAOImp;
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Views;
 import javafx.stage.Stage;
 

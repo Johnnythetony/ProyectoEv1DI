@@ -1,0 +1,15 @@
+package com.liceolapaz.dam.proyectoev1di.Mapper;
+
+import com.liceolapaz.dam.proyectoev1di.Entities.User;
+import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+@Mapper
+public interface UserMapper
+{
+    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
+
+    UserDTO DAOtoDTO(User user);
+    User DTOtoDAO(UserDTO user);
+}

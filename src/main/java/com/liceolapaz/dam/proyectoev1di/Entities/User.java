@@ -1,29 +1,33 @@
-package com.liceolapaz.dam.proyectoev1di.DAO;
+package com.liceolapaz.dam.proyectoev1di.Entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="usuarios")
-public class Usuario
+public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NaturalId
     private String username;
     private String password;
     private String mail;
-    private boolean is_admin;
+    @Column(name="is_admin")
+    private boolean admin;
     private boolean stylesheet;
 
-    public Usuario(){}
+    public User(){}
 
-    public Usuario(Long id, String username, String password, String mail, boolean is_admin, boolean stylesheet)
+    public User(Long id, String username, String password, String mail, boolean admin, boolean stylesheet)
     {
         this.id = id;
         this.username = username;
         this.password = password;
         this.mail = mail;
-        this.is_admin = is_admin;
+        this.admin = admin;
         this.stylesheet = stylesheet;
     }
 
@@ -59,12 +63,12 @@ public class Usuario
         this.mail = mail;
     }
 
-    public boolean isIs_admin() {
-        return is_admin;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public void setIs_admin(boolean is_admin) {
-        this.is_admin = is_admin;
+    public void setAdmin(boolean is_admin) {
+        this.admin = is_admin;
     }
 
     public boolean isStylesheet() {

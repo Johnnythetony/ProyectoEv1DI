@@ -1,6 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di.DBConnectivity;
 
-import com.liceolapaz.dam.proyectoev1di.DAO.Usuario;
+import com.liceolapaz.dam.proyectoev1di.Entities.User;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -38,7 +38,7 @@ public class DBConnection
         hibernate_cfg.setProperty("hibernate.format_sql", "true");
 
         //Mapear entidades
-        hibernate_cfg.addAnnotatedClass(Usuario.class);
+        hibernate_cfg.addAnnotatedClass(User.class);
 
         session_factory = hibernate_cfg.buildSessionFactory();
     }
@@ -65,5 +65,6 @@ public class DBConnection
     {
         getSession().getTransaction().commit();
         session.close();
+        session = null;
     }
 }

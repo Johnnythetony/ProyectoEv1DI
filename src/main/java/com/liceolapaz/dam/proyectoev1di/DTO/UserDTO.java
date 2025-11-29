@@ -1,24 +1,25 @@
 package com.liceolapaz.dam.proyectoev1di.DTO;
 
-public class UsuarioDTO
+public class UserDTO
 {
-    private int id;
+    private Long id;
     private String username;
     private String password;
     private String mail;
-    private boolean is_admin;
+    private boolean admin;
     private boolean stylesheet;
 
-    public UsuarioDTO(int id, String username, String password, String mail, boolean is_admin, boolean stylesheet) {
+    public UserDTO(Long id, String username, String password, String mail, boolean admin, boolean stylesheet)
+    {
         this.id = id;
         this.username = username;
         this.password = password;
         this.mail = mail;
-        this.is_admin = is_admin;
+        this.admin = admin;
         this.stylesheet = stylesheet;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -46,8 +47,8 @@ public class UsuarioDTO
         this.mail = mail;
     }
 
-    public boolean isIs_admin() {
-        return is_admin;
+    public boolean isAdmin() {
+        return admin;
     }
 
     public boolean isStylesheet()

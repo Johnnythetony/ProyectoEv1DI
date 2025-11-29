@@ -1,5 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di.Controllers;
 
+import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Views;
 import com.liceolapaz.dam.proyectoev1di.ViewHandler;
 import javafx.application.Platform;
@@ -15,6 +16,8 @@ public class UserMenuController implements Initializable
 {
     @FXML
     private BorderPane containerPane;
+
+    private UserDTO cur_user;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
