@@ -26,7 +26,7 @@ public class DBConnection
         Configuration hibernate_cfg = new Configuration();
 
         //Definir las propiedades de configuración de Hibernate
-        hibernate_cfg.setProperty("hibernate.connection.url", dotenv.get("DB_URL"));
+        hibernate_cfg.setProperty("hibernate.connection.url", AssemblyURL.assembleURL());
         hibernate_cfg.setProperty("hibernate.connection.driver_class", dotenv.get("DB_DRIVER_MYSQL"));
         hibernate_cfg.setProperty("hibernate.connection.username", dotenv.get("DB_USER_MYSQL"));
         hibernate_cfg.setProperty("hibernate.connection.password", dotenv.get("DB_PASSWORD_MYSQL"));
