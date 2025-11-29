@@ -1,5 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di;
 
+import com.liceolapaz.dam.proyectoev1di.DBConnectivity.AssemblyURL;
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Views;
 import javafx.stage.Stage;
 
