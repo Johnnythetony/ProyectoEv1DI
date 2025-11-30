@@ -5,7 +5,14 @@ public enum Views
     LOGIN("login-view.fxml"),
     REGISTER("register-view.fxml"),
     WINDOWBAR("window-bar.fxml"),
-    USERMENU("usermenu-view.fxml");
+    USERMENU("usermenu-view.fxml"),
+    ACCOUNT("account-view.fxml"),
+    USERSTATS("userstats-view.fxml"),
+    COMMUNITY("community-view.fxml"),
+    MAINPAGE("mainpage-view.fxml"),
+    GLOBALSTATS("globalstats-view.fxml"),
+    USERLIBRARY("userlibrary-view.fxml");
+
 
     private final String fxml;
 

@@ -1,6 +1,5 @@
 package com.liceolapaz.dam.proyectoev1di.Controllers;
 
-import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Views;
 import com.liceolapaz.dam.proyectoev1di.ViewHandler;
 import javafx.application.Platform;
@@ -17,8 +16,6 @@ public class UserMenuController implements Initializable
     @FXML
     private BorderPane containerPane;
 
-    private UserDTO cur_user;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -33,37 +30,37 @@ public class UserMenuController implements Initializable
     @FXML
     public void setVistaCuenta(ActionEvent actionEvent)
     {
-
+        setPaneCenter(Views.ACCOUNT.getFXML());
     }
 
     @FXML
     public void setVistaBacklog(ActionEvent actionEvent)
     {
-
+        setPaneCenter(Views.USERLIBRARY.getFXML());
     }
 
     @FXML
     public void setVistaResumenUsuario(ActionEvent actionEvent)
     {
-
+        setPaneCenter(Views.USERSTATS.getFXML());
     }
 
     @FXML
     public void setVistaBiblioteca(ActionEvent actionEvent)
     {
-
+        setPaneCenter(Views.MAINPAGE.getFXML());
     }
 
     @FXML
     public void setVistaResumenGlobal(ActionEvent actionEvent)
     {
-
+        setPaneCenter(Views.GLOBALSTATS.getFXML());
     }
 
     @FXML
     public void setVistaComunidad(ActionEvent actionEvent)
     {
-
+        setPaneCenter(Views.COMMUNITY.getFXML());
     }
 
     @FXML

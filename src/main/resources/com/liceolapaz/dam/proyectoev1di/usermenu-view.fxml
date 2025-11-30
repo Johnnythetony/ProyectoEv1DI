@@ -20,21 +20,21 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Mi biblioteca">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Ver juegos" />
-                        <MenuItem mnemonicParsing="false" text="Resumen" />
+                      <MenuItem mnemonicParsing="false" onAction="#setVistaBacklog" text="Ver juegos" />
+                        <MenuItem mnemonicParsing="false" onAction="#setVistaResumenUsuario" text="Resumen" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Game Buffer">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Menu principal" />
-                        <MenuItem mnemonicParsing="false" text="Resumen global" />
-                        <MenuItem mnemonicParsing="false" text="Comunidad" />
+                      <MenuItem mnemonicParsing="false" onAction="#setVistaBiblioteca" text="Menu principal" />
+                        <MenuItem mnemonicParsing="false" onAction="#setVistaResumenGlobal" text="Resumen global" />
+                        <MenuItem mnemonicParsing="false" onAction="#setVistaComunidad" text="Comunidad" />
                     </items>
                   </Menu>
                   <Menu disable="true" mnemonicParsing="false" text="Administrar" visible="false">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Gestionar videojuegos" />
-                        <MenuItem mnemonicParsing="false" text="Gestionar usuariosç" />
+                        <MenuItem mnemonicParsing="false" text="Gestionar usuarios" />
                     </items>
                   </Menu>
               </menus>

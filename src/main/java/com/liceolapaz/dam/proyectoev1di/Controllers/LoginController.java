@@ -53,5 +53,9 @@ public class LoginController implements Initializable
             SessionManager.getInstance().setUser(current_user);
             ViewHandler.loadStage(Views.USERMENU.getFXML());
         }
+        else
+        {
+
+        }
     }
 }
