@@ -10,10 +10,10 @@ public class User
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NaturalId
+    @Column(unique = true)
     private String username;
     private String password;
+    @Column(unique = true)
     private String mail;
     @Column(name="is_admin")
     private boolean admin;
