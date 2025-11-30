@@ -8,12 +8,15 @@ import org.hibernate.cfg.Configuration;
 
 public class DBConnection
 {
-    private SessionFactory session_factory;
+    private static SessionFactory session_factory;
     private Session session;
 
     protected DBConnection()
     {
-        createSessionFactory();
+        if (session_factory == null)
+        {
+            createSessionFactory();
+        }
     }
 
     protected void createSessionFactory()
