@@ -9,7 +9,8 @@ import javafx.util.Duration;
 public class Debounce
 {
     private Timeline timeline;
-    private final int DEBOUNCE_MILLIS = 800;
+    private final int DEBOUNCE_MILLIS_TEXT = 800;
+    private final int DEBOUNCE_MILLIS = 200;
     private String newValue = "";
 
     public Debounce()
@@ -18,7 +19,13 @@ public class Debounce
         timeline.setCycleCount(1);
     }
 
-    public void debounce(String newValue)
+    public void debounce()
+    {
+        timeline.stop();
+        timeline.playFromStart();
+    }
+
+    public void debounceText(String newValue)
     {
         this.newValue = newValue;
         timeline.stop();
@@ -28,6 +35,11 @@ public class Debounce
     public String getNewValue()
     {
         return newValue;
+    }
+
+    public void newKeyframeText(EventHandler<ActionEvent> evento)
+    {
+        timeline.getKeyFrames().set(0, new KeyFrame(Duration.millis(DEBOUNCE_MILLIS_TEXT),evento));
     }
 
     public void newKeyframe(EventHandler<ActionEvent> evento)

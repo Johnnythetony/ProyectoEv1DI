@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,28 +47,28 @@ public class RegisterController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         Debounce db_username = new Debounce();
-        db_username.newKeyframe(e -> validateUsername(db_username.getNewValue()));
+        db_username.newKeyframeText(e -> validateUsername(db_username.getNewValue()));
 
         Debounce db_mail = new Debounce();
-        db_mail.newKeyframe(e -> validateEmail(db_mail.getNewValue()));
+        db_mail.newKeyframeText(e -> validateEmail(db_mail.getNewValue()));
 
         Debounce db_password = new Debounce();
-        db_password.newKeyframe(e -> validatePassword(db_password.getNewValue()));
+        db_password.newKeyframeText(e -> validatePassword(db_password.getNewValue()));
 
         Debounce db_repeat_password = new Debounce();
-        db_repeat_password.newKeyframe(e -> confirmPassword(db_repeat_password.getNewValue()));
+        db_repeat_password.newKeyframeText(e -> confirmPassword(db_repeat_password.getNewValue()));
 
         usernameTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            db_username.debounce(newValue);
+            db_username.debounceText(newValue);
         });
         emailTF.textProperty().addListener((observable, oldValue, newValue) -> {
-            db_mail.debounce(newValue);
+            db_mail.debounceText(newValue);
         });
         passwordPF.textProperty().addListener((observable, oldValue, newValue) -> {
-            db_password.debounce(newValue);
+            db_password.debounceText(newValue);
         });
         repeat_passwordPF.textProperty().addListener((observable, oldValue, newValue) -> {
-            db_repeat_password.debounce(newValue);
+            db_repeat_password.debounceText(newValue);
         });
     }
 

@@ -3,16 +3,17 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.dam.proyectoev1di.Controllers.UserMenuController">
    <center>
-      <BorderPane fx:id="containerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
             <MenuBar fx:id="usermenubar">
               <menus>
-                <Menu mnemonicParsing="false" text="Mi cuenta">
+                <Menu fx:id="my_accountM" mnemonicParsing="false" text="Mi cuenta">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#setVistaCuenta" text="Mis datos" />
+                    <MenuItem mnemonicParsing="false" onAction="#setAccountView" text="Mis datos" />
                         <MenuItem mnemonicParsing="false" onAction="#goToLogin" text="Cambiar cuenta" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem mnemonicParsing="false" onAction="#systemExit" text="Salir" />
@@ -20,15 +21,15 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Mi biblioteca">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#setVistaBacklog" text="Ver juegos" />
-                        <MenuItem mnemonicParsing="false" onAction="#setVistaResumenUsuario" text="Resumen" />
+                      <MenuItem mnemonicParsing="false" onAction="#setBacklogView" text="Mis juegos" />
+                        <MenuItem mnemonicParsing="false" onAction="#setUserResumeView" text="Resumen" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Game Buffer">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#setVistaBiblioteca" text="Menu principal" />
-                        <MenuItem mnemonicParsing="false" onAction="#setVistaResumenGlobal" text="Resumen global" />
-                        <MenuItem mnemonicParsing="false" onAction="#setVistaComunidad" text="Comunidad" />
+                        <MenuItem mnemonicParsing="false" onAction="#setGlobalLibraryView" text="Buscar juegos" />
+                        <MenuItem mnemonicParsing="false" onAction="#setGlobalResumeView" text="Resumen global" />
+                        <MenuItem mnemonicParsing="false" onAction="#setCommunityView" text="Comunidad" />
                     </items>
                   </Menu>
                   <Menu disable="true" mnemonicParsing="false" text="Administrar" visible="false">
@@ -43,6 +44,30 @@
                </padding>
             </MenuBar>
          </top>
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="containerPane" prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="80.0" spacing="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#returnToPreviousView" style="-fx-background-radius: 50;" text="&lt;">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                              <ProgressIndicator fx:id="taskPI" scaleX="0.75" scaleY="0.75" visible="false" />
+                           </children>
+                           <padding>
+                              <Insets top="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+         </center>
       </BorderPane>
    </center>
 </BorderPane>
