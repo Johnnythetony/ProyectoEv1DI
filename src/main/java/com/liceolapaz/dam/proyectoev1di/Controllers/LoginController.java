@@ -1,6 +1,7 @@
 package com.liceolapaz.dam.proyectoev1di.Controllers;
 
 import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
+import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Stylesheets;
 import com.liceolapaz.dam.proyectoev1di.Services.UserService;
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Images;
 import com.liceolapaz.dam.proyectoev1di.SessionManager;
@@ -9,10 +10,12 @@ import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Views;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -55,7 +58,12 @@ public class LoginController implements Initializable
         }
         else
         {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.initStyle(StageStyle.TRANSPARENT);
+            alert.setContentText("Usuario/contraseña incorrectos");
+            alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource(Stylesheets.DEFAULT.getResource_path()).toExternalForm());
 
+            alert.showAndWait();
         }
     }
 }
