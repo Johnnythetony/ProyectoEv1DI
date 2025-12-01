@@ -1,5 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di.DBConnectivity;
 
+import com.liceolapaz.dam.proyectoev1di.ResourcePaths.SSLCerts;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class AssemblyURL
@@ -17,7 +18,7 @@ public class AssemblyURL
         url.append("?useSSL=true");
         url.append("&sslMode=VERIFY_IDENTITY");
         url.append("&trustCertificateKeyStoreUrl=");
-        url.append(AssemblyURL.class.getClassLoader().getResource("SSL-certs/truststore.jks").toString());
+        url.append(AssemblyURL.class.getClassLoader().getResource(SSLCerts.TRUSTSTORE.getResource_path()).toString());
         url.append("&trustCertificateKeyStorePassword=");
         url.append(de.get("TRUSTSTORE_PASSWORD"));
 
