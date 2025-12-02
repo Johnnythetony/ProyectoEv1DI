@@ -9,6 +9,8 @@ import com.liceolapaz.dam.proyectoev1di.Utils.HashUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 
+import java.util.List;
+
 public class UserService extends DBConnection implements UserDAO
 {
     public UserService(){}
@@ -64,10 +66,18 @@ public class UserService extends DBConnection implements UserDAO
         CriteriaQuery<User> cq = cb.createQuery(User.class);
         cq.select(cq.from(User.class));
         cq.where(cb.equal(cq.from(User.class).get("username"), username));
-        User usuario = getSession().createQuery(cq).getSingleResult();
+        List<User> user= getSession().createQuery(cq).getResultList();
 
-        verified = HashUtil.checkPassword(password, usuario.getPassword());
-        commitTransaction();
+        if (user.size() == 1)
+        {
+            verified = HashUtil.checkPassword(password, user.getFirst().getPassword());
+            commitTransaction();
+        }
+        else
+        {
+            commitTransaction();
+            verified = false;
+        }
 
         return verified;
     }

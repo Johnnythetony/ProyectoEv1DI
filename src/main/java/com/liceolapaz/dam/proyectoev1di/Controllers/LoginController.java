@@ -10,12 +10,11 @@ import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Views;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,6 +30,8 @@ public class LoginController implements Initializable
     @FXML
     private PasswordField passwordTF;
 
+    @FXML
+    private Label loginerrL;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -58,12 +59,8 @@ public class LoginController implements Initializable
         }
         else
         {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.initStyle(StageStyle.TRANSPARENT);
-            alert.setContentText("Usuario/contraseña incorrectos");
-            alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource(Stylesheets.DEFAULT.getResource_path()).toExternalForm());
-
-            alert.showAndWait();
+            loginerrL.setText("Usuario/Contraseña no válido");
+            loginerrL.setStyle("-fx-text-fill: red");
         }
     }
 }

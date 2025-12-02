@@ -34,8 +34,13 @@
                 </PasswordField>
                 <Button mnemonicParsing="false" onAction="#manageLogin" text="Iniciar sesión">
                     <VBox.margin>
-                        <Insets bottom="30.0" top="10.0" />
+                        <Insets top="10.0" />
                     </VBox.margin></Button>
+            <Label fx:id="loginerrL">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Label>
                 <Label text="No tienes cuenta? Regístrate aquí!" />
                 <Button mnemonicParsing="false" onAction="#goToRegister" text="Registrarme" />
             </children>
