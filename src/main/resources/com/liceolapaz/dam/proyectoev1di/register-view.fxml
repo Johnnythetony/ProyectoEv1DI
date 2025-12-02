@@ -29,7 +29,7 @@
             <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
                   <PasswordField fx:id="passwordPF" />
-                  <Label fx:id="passworderrmsgL" />
+                  <Label fx:id="passworderrmsgL" styleClass="error_label" />
                </children>
             </VBox>
             <Label alignment="CENTER" text="Nombre de usuario" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
@@ -39,19 +39,19 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <TextField fx:id="emailTF" />
-                  <Label fx:id="mailerrmsgL" />
+                  <Label fx:id="mailerrmsgL" styleClass="error_label" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
                   <TextField fx:id="usernameTF" />
-                  <Label fx:id="usernameerrmsgL" />
+                  <Label fx:id="usernameerrmsgL" styleClass="error_label" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <PasswordField fx:id="repeat_passwordPF" />
-                  <Label fx:id="repeat_passworderrmsgL" />
+                  <Label fx:id="repeat_passworderrmsgL" styleClass="error_label" />
                </children>
             </VBox>
          </children>
