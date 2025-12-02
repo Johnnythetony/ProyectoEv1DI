@@ -1,6 +1,7 @@
 package com.liceolapaz.dam.proyectoev1di.Controllers;
 
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Views;
+import com.liceolapaz.dam.proyectoev1di.Services.UserService;
 import com.liceolapaz.dam.proyectoev1di.SessionManager;
 import com.liceolapaz.dam.proyectoev1di.Utils.Debounce;
 import com.liceolapaz.dam.proyectoev1di.ViewHandler;
@@ -22,6 +23,9 @@ public class UserMenuController implements Initializable
     @FXML
     private Menu my_accountM;
 
+    @FXML
+    private Menu adminM;
+
     private Debounce db_return_button;
 
     @Override
@@ -36,6 +40,9 @@ public class UserMenuController implements Initializable
                 setPanePreviousView(SessionManager.getInstance().nextPreviousView());
             }
         });
+
+        //ToDo activar menu admin si usuario es admin
+        if(SessionManager.getInstance().userIsAdmin()) adminM.setVisible(true);
     }
 
     private void setPaneView(String view)

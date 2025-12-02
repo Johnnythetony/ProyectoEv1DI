@@ -2,6 +2,7 @@ package com.liceolapaz.dam.proyectoev1di.Services;
 
 import com.liceolapaz.dam.proyectoev1di.DAO.UserDAO;
 import com.liceolapaz.dam.proyectoev1di.DBConnectivity.DBConnection;
+import com.liceolapaz.dam.proyectoev1di.DTO.RegisterUserDTO;
 import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
 import com.liceolapaz.dam.proyectoev1di.Entities.User;
 import com.liceolapaz.dam.proyectoev1di.Mapper.UserMapper;
@@ -16,9 +17,9 @@ public class UserService extends DBConnection implements UserDAO
     public UserService(){}
 
     @Override
-    public void createUser(UserDTO user)
+    public void createUser(RegisterUserDTO user)
     {
-        User userDAO = UserMapper.INSTANCE.DTOtoDAO(user);
+        User userDAO = UserMapper.INSTANCE.RegisterDTOtoDAO(user);
         userDAO.setPassword(HashUtil.hashPassword(user.getPassword()));
 
         initTransaction();
@@ -130,5 +131,28 @@ public class UserService extends DBConnection implements UserDAO
         commitTransaction();
 
         return exists;
+    }
+
+    public boolean isAdmin(String username)
+    {
+        boolean user_is_admin;
+
+        initTransaction();
+
+        user_is_admin = retrieveUser(username).getFirst().isAdmin();
+
+        commitTransaction();
+
+        return user_is_admin;
+    }
+
+    private List<User> retrieveUser(String username)
+    {
+        CriteriaBuilder cb = getSession().getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        cq.select(cq.from(User.class));
+        cq.where(cb.equal(cq.from(User.class).get("username"), username));
+
+        return getSession().createQuery(cq).getResultList();
     }
 }

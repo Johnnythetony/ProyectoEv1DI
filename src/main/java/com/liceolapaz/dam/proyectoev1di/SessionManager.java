@@ -1,6 +1,7 @@
 package com.liceolapaz.dam.proyectoev1di;
 
 import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
+import com.liceolapaz.dam.proyectoev1di.Services.UserService;
 
 import java.util.LinkedList;
 
@@ -11,6 +12,8 @@ public class SessionManager
     private UserDTO cur_user;
 
     private LinkedList<String> previous_views = new LinkedList<String>();
+
+    private UserService user_service = new UserService();
 
     public static SessionManager getInstance()
     {
@@ -52,5 +55,10 @@ public class SessionManager
     public boolean previousViewExists()
     {
         return !previous_views.isEmpty();
+    }
+
+    public boolean userIsAdmin()
+    {
+        return user_service.isAdmin(cur_user.getUsername());
     }
 }
