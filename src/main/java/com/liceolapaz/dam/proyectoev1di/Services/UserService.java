@@ -9,6 +9,7 @@ import com.liceolapaz.dam.proyectoev1di.Mapper.UserMapper;
 import com.liceolapaz.dam.proyectoev1di.Utils.HashUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 
 import java.util.List;
 
@@ -32,11 +33,12 @@ public class UserService extends DBConnection implements UserDAO
     @Override
     public void updateUser(UserDTO user_dto)
     {
-        Long user_id = UserMapper.INSTANCE.DTOtoDAO(user_dto).getId();
+        String username = UserMapper.INSTANCE.DTOtoDAO(user_dto).getUsername();
 
         initTransaction();
 
-        User user_dao = getSession().find(User.class, user_id);
+        User user_dao = getSession().createQuery(criteriaQueryUser(username)).getSingleResult();
+
         UserMapper.INSTANCE.updateFromModel(user_dto, user_dao);
         getSession().merge(user_dao);
 
@@ -46,11 +48,12 @@ public class UserService extends DBConnection implements UserDAO
     @Override
     public void deleteUser(UserDTO user_dto)
     {
-        Long user_id = UserMapper.INSTANCE.DTOtoDAO(user_dto).getId();
+        String username = UserMapper.INSTANCE.DTOtoDAO(user_dto).getUsername();
 
         initTransaction();
 
-        User user_dao = getSession().find(User.class, user_id);
+        User user_dao = getSession().createQuery(criteriaQueryUser(username)).getSingleResult();
+
         getSession().remove(user_dao);
 
         commitTransaction();
@@ -63,22 +66,11 @@ public class UserService extends DBConnection implements UserDAO
 
         initTransaction();
 
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<User> cq = cb.createQuery(User.class);
-        cq.select(cq.from(User.class));
-        cq.where(cb.equal(cq.from(User.class).get("username"), username));
-        List<User> user= getSession().createQuery(cq).getResultList();
+        User user = getSession().createQuery(criteriaQueryUser(username)).getSingleResult();
 
-        if (user.size() == 1)
-        {
-            verified = HashUtil.checkPassword(password, user.getFirst().getPassword());
-            commitTransaction();
-        }
-        else
-        {
-            commitTransaction();
-            verified = false;
-        }
+        verified = HashUtil.checkPassword(password, user.getPassword());
+
+        commitTransaction();
 
         return verified;
     }
@@ -88,11 +80,7 @@ public class UserService extends DBConnection implements UserDAO
     {
         initTransaction();
 
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<User> cq = cb.createQuery(User.class);
-        cq.select(cq.from(User.class));
-        cq.where(cb.equal(cq.from(User.class).get("username"), username));
-        User usuario = getSession().createQuery(cq).getSingleResult();
+        User usuario = getSession().createQuery(criteriaQueryUser(username)).getSingleResult();
 
         commitTransaction();
 
@@ -105,11 +93,7 @@ public class UserService extends DBConnection implements UserDAO
 
         initTransaction();
 
-        CriteriaBuilder cb = getSession().getCriteriaBuilder();
-        CriteriaQuery<User> cq = cb.createQuery(User.class);
-        cq.select(cq.from(User.class));
-        cq.where(cb.equal(cq.from(User.class).get("username"), username));
-        exists = !getSession().createQuery(cq).getResultList().isEmpty();
+        exists = getSession().createQuery(criteriaQueryUser(username)).getSingleResult() != null;
 
         commitTransaction();
 
@@ -124,8 +108,11 @@ public class UserService extends DBConnection implements UserDAO
 
         CriteriaBuilder cb = getSession().getCriteriaBuilder();
         CriteriaQuery<User> cq = cb.createQuery(User.class);
-        cq.select(cq.from(User.class));
-        cq.where(cb.equal(cq.from(User.class).get("mail"), email));
+
+        Root<User> user_root = cq.from(User.class);
+
+        cq.select(user_root);
+        cq.where(cb.equal(user_root.get("mail"), email));
         exists = !getSession().createQuery(cq).getResultList().isEmpty();
 
         commitTransaction();
@@ -139,20 +126,25 @@ public class UserService extends DBConnection implements UserDAO
 
         initTransaction();
 
-        user_is_admin = retrieveUser(username).getFirst().isAdmin();
+        CriteriaQuery<User> cq = criteriaQueryUser(username);
+
+        user_is_admin = getSession().createQuery(cq).getSingleResult().isAdmin();
 
         commitTransaction();
 
         return user_is_admin;
     }
 
-    private List<User> retrieveUser(String username)
+    private CriteriaQuery<User> criteriaQueryUser(String username)
     {
         CriteriaBuilder cb = getSession().getCriteriaBuilder();
         CriteriaQuery<User> cq = cb.createQuery(User.class);
-        cq.select(cq.from(User.class));
-        cq.where(cb.equal(cq.from(User.class).get("username"), username));
 
-        return getSession().createQuery(cq).getResultList();
+        Root<User> user_root = cq.from(User.class);
+
+        cq.select(user_root);
+        cq.where(cb.equal(user_root.get("username"), username));
+
+        return cq;
     }
 }

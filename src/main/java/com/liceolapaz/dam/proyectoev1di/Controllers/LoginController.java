@@ -32,6 +32,8 @@ public class LoginController implements Initializable
     @FXML
     private Label loginerrL;
 
+    private UserService user_service;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
@@ -48,7 +50,7 @@ public class LoginController implements Initializable
     @FXML
     public void manageLogin(ActionEvent event)
     {
-        UserService user_service = new UserService();
+        user_service = new UserService();
 
         if(user_service.verifyUser(usernameTF.getText(),passwordTF.getText()))
         {

@@ -41,8 +41,11 @@ public class UserMenuController implements Initializable
             }
         });
 
-        //ToDo activar menu admin si usuario es admin
-        if(SessionManager.getInstance().userIsAdmin()) adminM.setVisible(true);
+        if(SessionManager.getInstance().userIsAdmin())
+        {
+            adminM.setVisible(true);
+            adminM.setDisable(false);
+        };
     }
 
     private void setPaneView(String view)
