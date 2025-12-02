@@ -32,7 +32,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#setCommunityView" text="Comunidad" />
                     </items>
                   </Menu>
-                  <Menu disable="true" mnemonicParsing="false" text="Administrar" visible="false">
+                  <Menu fx:id="adminM" disable="true" mnemonicParsing="false" text="Administrar" visible="false">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Gestionar videojuegos" />
                         <MenuItem mnemonicParsing="false" text="Gestionar usuarios" />

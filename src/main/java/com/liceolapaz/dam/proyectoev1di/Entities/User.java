@@ -1,7 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di.Entities;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="usuarios")
