@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="199.0" spacing="20.0" styleClass="filter-container" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Biblioteca">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></Label>
+            <Separator prefWidth="200.0" />
+            <TextField promptText="Título, compañia, genero...">
+               <VBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Accordion>
+               <panes>
+                  <TitledPane animated="false" text="Generos">
+                     <content>
+                        <FlowPane hgap="10.0" prefHeight="200.0" prefWidth="200.0" vgap="10.0" />
+                     </content></TitledPane>
+                  <TitledPane animated="false" text="Compañias">
+                     <content>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                     </content></TitledPane>
+                  <TitledPane animated="false" layoutX="10.0" layoutY="36.0" text="Avanzado">
+                     <content>
+                        <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                  </TitledPane>
+               </panes>
+            </Accordion>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+   </left>
    <center>
-      <Label text="User library" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <FlowPane prefHeight="385.0" prefWidth="414.0" rowValignment="TOP">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Label text="Lista de juegos" />
+               </children>
+            </FlowPane>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Botones navegacion" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </center>
 </BorderPane>
