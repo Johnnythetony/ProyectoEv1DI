@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.dam.proyectoev1di.Controllers.AccountViewController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#submit" text="Aplicar cambios" />
+            <Button mnemonicParsing="false" onAction="#cleanForm" text="Limpiar formulario" />
+         </children>
+      </HBox>
+   </bottom>
    <center>
-      <Label text="Account view" BorderPane.alignment="CENTER" />
+      <GridPane alignment="CENTER" vgap="20.0" BorderPane.alignment="CENTER">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="215" minWidth="10.0" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="290" minWidth="10.0" prefWidth="290" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <PasswordField fx:id="passwordPF" />
+                  <Label fx:id="passworderrmsgL" styleClass="error_label" />
+               </children>
+            </VBox>
+            <Label alignment="CENTER" fx:id="usernameL" text="" GridPane.halignment="LEFT" GridPane.valignment="TOP" />
+            <Label alignment="CENTER" fx:id="mailL" text="" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+            <Label alignment="CENTER" text="Contraseña nueva" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+            <Label alignment="CENTER" text="Repetir contraseña nueva" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <TextField fx:id="emailTF" />
+                  <Label fx:id="mailerrmsgL" styleClass="error_label" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                  <TextField fx:id="usernameTF" />
+                  <Label fx:id="usernameerrmsgL" styleClass="error_label" />
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <PasswordField fx:id="repeat_passwordPF" />
+                  <Label fx:id="repeat_passworderrmsgL" styleClass="error_label" />
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets left="80.0" right="80.0" top="50.0" />
+         </BorderPane.margin>
+      </GridPane>
    </center>
 </BorderPane>
