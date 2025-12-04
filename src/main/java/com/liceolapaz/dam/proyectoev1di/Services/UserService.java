@@ -39,6 +39,8 @@ public class UserService extends DBConnection implements UserDAO
 
         User user_dao = getSession().createQuery(criteriaQueryUser(username)).getSingleResult();
 
+        if(user_dao == null) return;
+
         UserMapper.INSTANCE.updateFromModel(user_dto, user_dao);
         getSession().merge(user_dao);
 
@@ -54,6 +56,8 @@ public class UserService extends DBConnection implements UserDAO
 
         User user_dao = getSession().createQuery(criteriaQueryUser(username)).getSingleResult();
 
+        if(user_dao == null) return;
+
         getSession().remove(user_dao);
 
         commitTransaction();
@@ -63,6 +67,8 @@ public class UserService extends DBConnection implements UserDAO
     public boolean verifyUser(String username, String password)
     {
         boolean verified;
+
+        if(!usernameExists(username)) return false;
 
         initTransaction();
 
@@ -91,11 +97,19 @@ public class UserService extends DBConnection implements UserDAO
     {
         boolean exists;
 
-        initTransaction();
+        try
+        {
+            initTransaction();
 
-        exists = getSession().createQuery(criteriaQueryUser(username)).getSingleResult() != null;
+            exists = getSession().createQuery(criteriaQueryUser(username)).getSingleResult() != null;
 
-        commitTransaction();
+            commitTransaction();
+        }
+        catch (Exception e)
+        {
+            exists = false;
+        }
+
 
         return exists;
     }
@@ -128,7 +142,14 @@ public class UserService extends DBConnection implements UserDAO
 
         CriteriaQuery<User> cq = criteriaQueryUser(username);
 
-        user_is_admin = getSession().createQuery(cq).getSingleResult().isAdmin();
+        if(getSession().createQuery(cq).getSingleResult() != null)
+        {
+            user_is_admin = getSession().createQuery(cq).getSingleResult().isAdmin();
+        }
+        else
+        {
+            return false;
+        }
 
         commitTransaction();
 
