@@ -27,6 +27,11 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.2, 0, 0); /* Sombra sutil */
 }
 
+.filter-container {
+    -fx-border-width: 0 2 0 0;
+    -fx-border-color: -fx-color-secondary;
+}
+
 /* Labels */
 .label {
     -fx-text-fill: -fx-color-text-light;
