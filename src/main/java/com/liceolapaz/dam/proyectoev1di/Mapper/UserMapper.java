@@ -1,6 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di.Mapper;
 
-import com.liceolapaz.dam.proyectoev1di.DTO.RegisterUserDTO;
+import com.liceolapaz.dam.proyectoev1di.DTO.PrivateUserDTO;
 import com.liceolapaz.dam.proyectoev1di.Entities.User;
 import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
 import org.mapstruct.Mapper;
@@ -14,7 +14,8 @@ public interface UserMapper
 
     UserDTO DAOtoDTO( User user );
     User DTOtoDAO( UserDTO user_dto );
-    User RegisterDTOtoDAO (RegisterUserDTO reg_user_dto);
+    User PrivateDTOtoDAO(PrivateUserDTO reg_user_dto);
 
     void updateFromModel( UserDTO user_dto, @MappingTarget User user );
+    void updateFromPrivateModel( PrivateUserDTO user_dto, @MappingTarget User user );
 }

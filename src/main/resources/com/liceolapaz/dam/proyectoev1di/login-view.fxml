@@ -32,7 +32,7 @@
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin>
                 </PasswordField>
-                <Button mnemonicParsing="false" onAction="#manageLogin" text="Iniciar sesión">
+                <Button defaultButton="true" mnemonicParsing="false" onAction="#manageLogin" text="Iniciar sesión">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin></Button>

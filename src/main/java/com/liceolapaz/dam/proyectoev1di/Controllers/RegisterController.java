@@ -1,7 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di.Controllers;
 
-import com.liceolapaz.dam.proyectoev1di.DTO.RegisterUserDTO;
-import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
+import com.liceolapaz.dam.proyectoev1di.DTO.PrivateUserDTO;
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Views;
 import com.liceolapaz.dam.proyectoev1di.Services.UserService;
 import com.liceolapaz.dam.proyectoev1di.Utils.Debounce;
@@ -133,7 +132,7 @@ public class RegisterController implements Initializable
     {
         UserService user_service = new UserService();
 
-        user_service.createUser(new RegisterUserDTO(
+        user_service.createUser(new PrivateUserDTO(
                 usernameTF.getText(),
                 emailTF.getText(),
                 passwordPF.getText()));

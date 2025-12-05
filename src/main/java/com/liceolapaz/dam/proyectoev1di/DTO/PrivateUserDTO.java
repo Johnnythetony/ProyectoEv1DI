@@ -1,6 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di.DTO;
 
-public class RegisterUserDTO
+public class PrivateUserDTO
 {
     private String username;
     private String mail;
@@ -8,7 +8,7 @@ public class RegisterUserDTO
     private boolean admin;
     private boolean stylesheet;
 
-    public RegisterUserDTO(String username, String mail, String password)
+    public PrivateUserDTO(String username, String mail, String password)
     {
         this.username = username;
         this.mail = mail;

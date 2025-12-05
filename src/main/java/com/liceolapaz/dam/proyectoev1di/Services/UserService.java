@@ -2,7 +2,7 @@ package com.liceolapaz.dam.proyectoev1di.Services;
 
 import com.liceolapaz.dam.proyectoev1di.DAO.UserDAO;
 import com.liceolapaz.dam.proyectoev1di.DBConnectivity.DBConnection;
-import com.liceolapaz.dam.proyectoev1di.DTO.RegisterUserDTO;
+import com.liceolapaz.dam.proyectoev1di.DTO.PrivateUserDTO;
 import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
 import com.liceolapaz.dam.proyectoev1di.Entities.User;
 import com.liceolapaz.dam.proyectoev1di.Mapper.UserMapper;
@@ -11,16 +11,14 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-import java.util.List;
-
 public class UserService extends DBConnection implements UserDAO
 {
     public UserService(){}
 
     @Override
-    public void createUser(RegisterUserDTO user)
+    public void createUser(PrivateUserDTO user)
     {
-        User userDAO = UserMapper.INSTANCE.RegisterDTOtoDAO(user);
+        User userDAO = UserMapper.INSTANCE.PrivateDTOtoDAO(user);
         userDAO.setPassword(HashUtil.hashPassword(user.getPassword()));
 
         initTransaction();
@@ -31,9 +29,9 @@ public class UserService extends DBConnection implements UserDAO
     }
 
     @Override
-    public void updateUser(UserDTO user_dto)
+    public void updateUser(PrivateUserDTO user_dto)
     {
-        String username = UserMapper.INSTANCE.DTOtoDAO(user_dto).getUsername();
+        String username = user_dto.getUsername();
 
         initTransaction();
 
@@ -41,7 +39,7 @@ public class UserService extends DBConnection implements UserDAO
 
         if(user_dao == null) return;
 
-        UserMapper.INSTANCE.updateFromModel(user_dto, user_dao);
+        UserMapper.INSTANCE.updateFromPrivateModel(user_dto, user_dao);
         getSession().merge(user_dao);
 
         commitTransaction();
@@ -108,6 +106,7 @@ public class UserService extends DBConnection implements UserDAO
         catch (Exception e)
         {
             exists = false;
+            commitTransaction();
         }
 
 
