@@ -1,13 +1,15 @@
 package com.liceolapaz.dam.proyectoev1di.DTO;
 
+import com.liceolapaz.dam.proyectoev1di.Entities.Company;
+
 public class PrivateVideogameDTO
 {
     private String titulo;
     private String genero;
-    private String companhia;
+    private Company companhia;
     private String portada;
 
-    public PrivateVideogameDTO(String titulo, String genero, String companhia, String portada) {
+    public PrivateVideogameDTO(String titulo, String genero, Company companhia, String portada) {
         this.titulo = titulo;
         this.genero = genero;
         this.companhia = companhia;
@@ -30,11 +32,11 @@ public class PrivateVideogameDTO
         this.genero = genero;
     }
 
-    public String getCompanhia() {
+    public Company getCompanhia() {
         return companhia;
     }
 
-    public void setCompanhia(String companhia) {
+    public void setCompanhia(Company companhia) {
         this.companhia = companhia;
     }
 

@@ -46,6 +46,8 @@ public class DBConnection
         hibernate_cfg.addAnnotatedClass(Company.class);
         hibernate_cfg.addAnnotatedClass(Backlog.class);
         hibernate_cfg.addAnnotatedClass(Platform.class);
+        hibernate_cfg.addAnnotatedClass(GamesPlatforms.class);
+        hibernate_cfg.addAnnotatedClass(VideojuegoPlataformaId.class);
 
         session_factory = hibernate_cfg.buildSessionFactory();
     }

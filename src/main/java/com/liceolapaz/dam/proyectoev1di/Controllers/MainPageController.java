@@ -7,15 +7,16 @@ import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Stylesheets;
 import com.liceolapaz.dam.proyectoev1di.Services.VideogameService;
 import com.liceolapaz.dam.proyectoev1di.Utils.Debounce;
 import com.liceolapaz.dam.proyectoev1di.ViewHandler;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
@@ -26,6 +27,7 @@ import javafx.stage.StageStyle;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainPageController implements Initializable
@@ -42,11 +44,14 @@ public class MainPageController implements Initializable
     @FXML
     private FlowPane listajuegosFP;
 
+    @FXML
+    private TextField searchbarTF;
+
     private GameFilterDTO gameFilters;
 
     private VideogameService vg_service = new VideogameService();
 
-    private ArrayList<VideogameDTO> juegos = new ArrayList<>();
+    private List<VideogameDTO> juegos = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -86,57 +91,66 @@ public class MainPageController implements Initializable
             gameFilters.setSearchText(db.getNewValue());
             applyFilters();
         });
+
+        searchbarTF.textProperty().addListener((observable, oldValue, newValue) -> {
+            db.debounceText(newValue);
+        });
+
+        applyFilters();
     }
 
     @FXML
     public void applyFilters()
     {
-        juegos = (ArrayList<VideogameDTO>) vg_service.getFiteredGames(gameFilters);
+        listajuegosFP.getChildren().clear();
 
+        juegos = vg_service.getFiteredGames(gameFilters);
+
+        List<Node> game_cards = new ArrayList<>();
         for(VideogameDTO game : juegos)
         {
-            listajuegosFP.getChildren().add(createGameCard(game));
+            game_cards.add(createGameCard(game));
         }
+
+        listajuegosFP.getChildren().addAll(game_cards);
     }
 
     @FXML
     public void addGenreCheckBoxFilter(String filter)
     {
-        gameFilters.getSelectedGenres().put(filter, true);
+        gameFilters.getSelectedGenres().put(filter, !gameFilters.getSelectedGenres().get(filter));
         applyFilters();
     }
 
     @FXML
     public void addCompanyCheckBoxFilter(String filter)
     {
-        gameFilters.getSelectedCompanies().put(filter, true);
+        gameFilters.getSelectedCompanies().put(filter, !gameFilters.getSelectedCompanies().get(filter));
         applyFilters();
     }
 
     @FXML
     public void addPlatformCheckBoxFilter(String filter)
     {
-        gameFilters.getSelectedPlatforms().put(filter, true);
+        gameFilters.getSelectedPlatforms().put(filter, !gameFilters.getSelectedPlatforms().get(filter));
         applyFilters();
     }
 
     private StackPane createGameCard(VideogameDTO game) {
 
-        // --- Dimensiones Deseadas ---
-        final double IMAGE_WIDTH = 80;
-        final double IMAGE_HEIGHT = 120;
+        final double IMAGE_WIDTH = 300;
+        final double IMAGE_HEIGHT = 180;
 
-        // --- 1. Imagen (Portada) ---
         ImageView imageView = new ImageView();
         try {
             Image image;
             if(game.getPortada() != null)
             {
-                image = new Image(game.getPortada(), IMAGE_WIDTH, IMAGE_HEIGHT, false, true);
+                image = new Image(game.getPortada(), IMAGE_WIDTH, IMAGE_HEIGHT, true, true);
             }
             else
             {
-                image = new Image(Images.LOGIN_ICON.getResource_path(), IMAGE_WIDTH, IMAGE_HEIGHT, false, true);
+                image = new Image(Images.LOGIN_ICON.getResource_path(), IMAGE_WIDTH, IMAGE_HEIGHT, true, true);
             }
             imageView.setImage(image);
             imageView.setFitWidth(IMAGE_WIDTH);
@@ -154,22 +168,17 @@ public class MainPageController implements Initializable
             alert.showAndWait();
         }
 
-        // --- 2. Etiqueta (Título Superpuesto) ---
         Label titleLabel = new Label(game.getTitulo());
 
-        titleLabel.setWrapText(true); // Permite que el texto se ajuste si es largo
+        titleLabel.setWrapText(true);
 
-        // --- 3. StackPane (Contenedor de Superposición) ---
         StackPane gameCard = new StackPane();
         gameCard.setPrefSize(IMAGE_WIDTH, IMAGE_HEIGHT);
 
-        // Posicionar el título en la parte inferior del StackPane
         StackPane.setAlignment(titleLabel, Pos.BOTTOM_CENTER);
 
-        // Añadir imagen y título. El que se añade último queda encima.
         gameCard.getChildren().addAll(imageView, titleLabel);
 
-        // Espacio entre tarjetas en el FlowPane
         gameCard.setPadding(new Insets(5, 5, 5, 5));
 
         return gameCard;
