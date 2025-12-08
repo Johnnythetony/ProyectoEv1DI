@@ -10,6 +10,8 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
+import java.util.ArrayList;
+
 public class VideogameService extends DBConnection implements VideogameDAO
 {
     @Override
@@ -64,6 +66,28 @@ public class VideogameService extends DBConnection implements VideogameDAO
         commitTransaction();
 
         return VideogameMapper.INSTANCE.DAOtoDTO(game);
+    }
+
+    public ArrayList<String> getGenres()
+    {
+        ArrayList<String> genres = new ArrayList<>();
+
+        initTransaction();
+
+        CriteriaBuilder cb = getSession().getCriteriaBuilder();
+        CriteriaQuery<String> cq = cb.createQuery(String.class);
+
+        Root<Videogame> gameRoot = cq.from(Videogame.class);
+
+        cq.select(gameRoot.get("genero"));
+
+        cq.distinct(true);
+
+        genres = (ArrayList<String>) getSession().createQuery(cq).getResultList();
+
+        commitTransaction();
+
+        return genres;
     }
 
     private CriteriaQuery<Videogame> criteriaQueryGame(String title)

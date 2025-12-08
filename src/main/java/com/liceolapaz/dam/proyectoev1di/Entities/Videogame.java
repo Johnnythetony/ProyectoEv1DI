@@ -3,7 +3,7 @@ package com.liceolapaz.dam.proyectoev1di.Entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "videogames")
+@Table(name = "videojuegos")
 public class Videogame
 {
     @Id
