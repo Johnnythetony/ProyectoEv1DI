@@ -14,10 +14,10 @@ import java.util.ResourceBundle;
 public class WindowBarController implements Initializable
 {
     @FXML
-    private HBox window_bar;
+    protected HBox window_bar;
 
-    private double x_offset = 0;
-    private double y_offset = 0;
+    protected double x_offset = 0;
+    protected double y_offset = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)

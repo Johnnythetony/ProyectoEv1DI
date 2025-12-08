@@ -11,7 +11,10 @@ public enum Views
     COMMUNITY("community-view.fxml"),
     MAINPAGE("mainpage-view.fxml"),
     GLOBALSTATS("globalstats-view.fxml"),
-    USERLIBRARY("userlibrary-view.fxml");
+    USERLIBRARY("userlibrary-view.fxml"),
+    CREATEUSER("admincreateuser-view.fxml"),
+    ADMINUSER("adminuser-view.fxml"),
+    ADMINLIBRARY("adminlibrary-view.fxml");
 
 
     private final String fxml;

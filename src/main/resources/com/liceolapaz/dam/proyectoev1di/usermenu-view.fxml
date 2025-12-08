@@ -35,7 +35,7 @@
                   <Menu fx:id="adminM" disable="true" mnemonicParsing="false" text="Administrar" visible="false">
                     <items>
                       <MenuItem mnemonicParsing="false" text="Gestionar videojuegos" />
-                        <MenuItem mnemonicParsing="false" text="Gestionar usuarios" />
+                        <MenuItem mnemonicParsing="false" onAction="#goToAdminUser" text="Gestionar usuarios" />
                     </items>
                   </Menu>
               </menus>
@@ -48,7 +48,7 @@
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <AnchorPane fx:id="containerPane" prefHeight="200.0" prefWidth="200.0" />
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" mouseTransparent="true">
+                  <AnchorPane mouseTransparent="true" prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="80.0" spacing="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>

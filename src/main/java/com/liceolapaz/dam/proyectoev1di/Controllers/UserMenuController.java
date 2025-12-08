@@ -115,6 +115,12 @@ public class UserMenuController implements Initializable
     }
 
     @FXML
+    public void goToAdminUser(ActionEvent actionEvent)
+    {
+        setPaneView(Views.ADMINUSER.getFXML());
+    }
+
+    @FXML
     public void systemExit(ActionEvent actionEvent)
     {
         Platform.exit();
