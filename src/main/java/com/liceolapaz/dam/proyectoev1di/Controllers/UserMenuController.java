@@ -9,8 +9,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Menu;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,6 +27,9 @@ public class UserMenuController implements Initializable
 
     @FXML
     private Menu adminM;
+
+    @FXML
+    private AnchorPane navAP;
 
     private Debounce db_return_button;
 
@@ -46,6 +51,8 @@ public class UserMenuController implements Initializable
             adminM.setVisible(true);
             adminM.setDisable(false);
         };
+
+        StackPane.setAlignment(navAP, Pos.TOP_RIGHT);
     }
 
     private void setPaneView(String view)

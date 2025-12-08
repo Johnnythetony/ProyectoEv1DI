@@ -48,7 +48,7 @@
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <AnchorPane fx:id="containerPane" prefHeight="200.0" prefWidth="200.0" />
-                  <AnchorPane mouseTransparent="true" prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane fx:id="navAP" maxHeight="200.0" maxWidth="40.0" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="40.0">
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="80.0" spacing="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
