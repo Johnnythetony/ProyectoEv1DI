@@ -24,9 +24,14 @@
                      <content>
                         <VBox fx:id="genreVB" prefHeight="200.0" prefWidth="100.0" />
                      </content></TitledPane>
-                  <TitledPane animated="false" layoutX="10.0" layoutY="36.0" text="Avanzado">
+                  <TitledPane prefHeight="200.0" prefWidth="200.0" text="Compañías">
                      <content>
-                        <FlowPane prefHeight="200.0" prefWidth="200.0" />
+                        <VBox fx:id="companyVB" prefHeight="200.0" prefWidth="100.0" />
+                     </content>
+                  </TitledPane>
+                  <TitledPane prefHeight="200.0" prefWidth="200.0" text="Plataformas">
+                     <content>
+                        <VBox fx:id="platformVB" prefHeight="200.0" prefWidth="100.0" />
                      </content>
                   </TitledPane>
               </panes>
@@ -40,7 +45,7 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <FlowPane prefHeight="385.0" prefWidth="414.0" rowValignment="TOP">
+            <FlowPane fx:id="listajuegosFP" hgap="10.0" prefHeight="385.0" prefWidth="414.0" rowValignment="TOP" vgap="10.0">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>

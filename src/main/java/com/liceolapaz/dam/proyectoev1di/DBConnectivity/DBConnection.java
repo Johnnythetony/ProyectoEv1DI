@@ -1,7 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di.DBConnectivity;
 
-import com.liceolapaz.dam.proyectoev1di.Entities.User;
-import com.liceolapaz.dam.proyectoev1di.Entities.Videogame;
+import com.liceolapaz.dam.proyectoev1di.Entities.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -44,6 +43,9 @@ public class DBConnection
         //Mapear entidades
         hibernate_cfg.addAnnotatedClass(User.class);
         hibernate_cfg.addAnnotatedClass(Videogame.class);
+        hibernate_cfg.addAnnotatedClass(Company.class);
+        hibernate_cfg.addAnnotatedClass(Backlog.class);
+        hibernate_cfg.addAnnotatedClass(Platform.class);
 
         session_factory = hibernate_cfg.buildSessionFactory();
     }

@@ -2,6 +2,8 @@ package com.liceolapaz.dam.proyectoev1di.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "videojuegos")
 public class Videogame
@@ -12,18 +14,28 @@ public class Videogame
     @Column(unique = true)
     private String titulo;
     private String genero;
-    private String companhia;
     private String portada;
+
+    @ManyToOne
+    @JoinColumn(name = "id_companhia")
+    private Company companhia;
+
+    @OneToMany(mappedBy = "videogame", cascade = CascadeType.ALL)
+    private List<GamesPlatforms> gamesPlatforms;
+
+    @OneToMany(mappedBy = "videojuego", cascade = CascadeType.ALL)
+    private List<Backlog> backlog;
 
     public Videogame() {}
 
-    public Videogame(Long id, String titulo, String genero, String companhia, String portada)
-    {
+    public Videogame(Long id, String titulo, String genero, String portada, Company companhia, List<GamesPlatforms> gamesPlatforms, List<Backlog> backlog) {
         this.id = id;
         this.titulo = titulo;
         this.genero = genero;
-        this.companhia = companhia;
         this.portada = portada;
+        this.companhia = companhia;
+        this.gamesPlatforms = gamesPlatforms;
+        this.backlog = backlog;
     }
 
     public Long getId() {
@@ -50,19 +62,35 @@ public class Videogame
         this.genero = genero;
     }
 
-    public String getCompanhia() {
-        return companhia;
-    }
-
-    public void setCompanhia(String companhia) {
-        this.companhia = companhia;
-    }
-
     public String getPortada() {
         return portada;
     }
 
     public void setPortada(String portada) {
         this.portada = portada;
+    }
+
+    public Company getCompanhia() {
+        return companhia;
+    }
+
+    public void setCompanhia(Company companhia) {
+        this.companhia = companhia;
+    }
+
+    public List<GamesPlatforms> getGamesPlatforms() {
+        return gamesPlatforms;
+    }
+
+    public void setGamesPlatforms(List<GamesPlatforms> gamesPlatforms) {
+        this.gamesPlatforms = gamesPlatforms;
+    }
+
+    public List<Backlog> getBacklog() {
+        return backlog;
+    }
+
+    public void setBacklog(List<Backlog> backlog) {
+        this.backlog = backlog;
     }
 }

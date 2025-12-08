@@ -17,6 +17,14 @@ public class Backlog
     private float duracion;
     private LocalDate fecha_resenha;
 
+    @ManyToOne
+    @JoinColumn(name = "id_videojuego")
+    private Videogame videojuego;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private User usuario;
+
     public Backlog() {}
 
     public Backlog(Long id,String resenha, short valoracion, String estado, float duracion, LocalDate fecha_resenha)

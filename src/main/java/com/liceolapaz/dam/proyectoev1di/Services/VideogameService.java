@@ -2,6 +2,7 @@ package com.liceolapaz.dam.proyectoev1di.Services;
 
 import com.liceolapaz.dam.proyectoev1di.DAO.VideogameDAO;
 import com.liceolapaz.dam.proyectoev1di.DBConnectivity.DBConnection;
+import com.liceolapaz.dam.proyectoev1di.DTO.GameFilterDTO;
 import com.liceolapaz.dam.proyectoev1di.DTO.PrivateVideogameDTO;
 import com.liceolapaz.dam.proyectoev1di.DTO.VideogameDTO;
 import com.liceolapaz.dam.proyectoev1di.Entities.Videogame;
@@ -11,6 +12,7 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VideogameService extends DBConnection implements VideogameDAO
 {
@@ -70,7 +72,7 @@ public class VideogameService extends DBConnection implements VideogameDAO
 
     public ArrayList<String> getGenres()
     {
-        ArrayList<String> genres = new ArrayList<>();
+        ArrayList<String> genres;
 
         initTransaction();
 
@@ -90,6 +92,16 @@ public class VideogameService extends DBConnection implements VideogameDAO
         return genres;
     }
 
+    public ArrayList<String> getCompanies()
+    {
+        return new CompanyService().getCompanies();
+    }
+
+    public ArrayList<String> getPlatforms()
+    {
+        return new PlatformService().getPlatforms();
+    }
+
     private CriteriaQuery<Videogame> criteriaQueryGame(String title)
     {
         CriteriaBuilder cb = getSession().getCriteriaBuilder();
@@ -101,5 +113,14 @@ public class VideogameService extends DBConnection implements VideogameDAO
         cq.where(cb.equal(game_root.get("titulo"), title));
 
         return cq;
+    }
+
+    public List<VideogameDTO> getFiteredGames(GameFilterDTO filters)
+    {
+        GameQueryAssembler gqa = new GameQueryAssembler();
+
+        CriteriaQuery<Videogame> cq = gqa.buildQuery(getSession(), filters);
+
+        return getSession().createQuery(cq).getResultList().stream().map(VideogameMapper.INSTANCE::DAOtoDTO).toList();
     }
 }

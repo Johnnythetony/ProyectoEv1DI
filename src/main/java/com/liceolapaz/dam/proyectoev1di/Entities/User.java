@@ -2,6 +2,8 @@ package com.liceolapaz.dam.proyectoev1di.Entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="usuarios")
 public class User
@@ -17,6 +19,9 @@ public class User
     @Column(name="is_admin")
     private boolean admin;
     private boolean stylesheet;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Backlog> backlogEntradas;
 
     public User(){}
 
