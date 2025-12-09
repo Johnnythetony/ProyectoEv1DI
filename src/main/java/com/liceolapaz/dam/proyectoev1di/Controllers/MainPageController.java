@@ -2,8 +2,10 @@ package com.liceolapaz.dam.proyectoev1di.Controllers;
 
 import com.liceolapaz.dam.proyectoev1di.DTO.GameFilterDTO;
 import com.liceolapaz.dam.proyectoev1di.DTO.VideogameDTO;
+import com.liceolapaz.dam.proyectoev1di.Entities.GamesPlatforms;
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Images;
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Stylesheets;
+import com.liceolapaz.dam.proyectoev1di.Services.GamesPlatformsService;
 import com.liceolapaz.dam.proyectoev1di.Services.VideogameService;
 import com.liceolapaz.dam.proyectoev1di.SessionManager;
 import com.liceolapaz.dam.proyectoev1di.Utils.Debounce;
@@ -65,6 +67,8 @@ public class MainPageController implements Initializable
 
     private VideogameService vg_service = new VideogameService();
 
+    private GamesPlatformsService gp_service = new GamesPlatformsService();
+
     private List<VideogameDTO> juegos = new ArrayList<>();
 
     @Override
@@ -96,11 +100,17 @@ public class MainPageController implements Initializable
             }
         });
 
+        pmaxS.setMax(gp_service.getPriceLimit(true));
+        pminS.setMin(gp_service.getPriceLimit(false));
+
+        pminS.setValue(pminS.getMin());
+        pmaxS.setValue(pmaxS.getMax());
+
         ArrayList<String> genres = vg_service.getGenres();
         ArrayList<String> companies = vg_service.getCompanies();
         ArrayList<String> platforms = vg_service.getPlatforms();
 
-        gameFilters = new GameFilterDTO("", new HashMap<>(), new HashMap<>(), new HashMap<>());
+        gameFilters = new GameFilterDTO("", new HashMap<>(), new HashMap<>(), new HashMap<>(), pmaxS.getMax(), pminS.getMin());
 
         for(String genre : genres)
         {
@@ -135,9 +145,6 @@ public class MainPageController implements Initializable
         searchbarTF.textProperty().addListener((observable, oldValue, newValue) -> {
             db.debounceText(newValue);
         });
-
-        pminS.setValue(pminS.getMin());
-        pmaxS.setValue(pmaxS.getMax());
 
         applyFilters();
     }

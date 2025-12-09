@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 public class GameFilterDTO
 {
+    private Double preciomax;
+    private Double preciomin;
+
     private String searchText;
 
     private HashMap<String, Boolean> selectedGenres;
@@ -12,12 +15,14 @@ public class GameFilterDTO
 
     private HashMap<String, Boolean> selectedPlatforms;
 
-    public GameFilterDTO(String searchText, HashMap<String, Boolean> selectedGenres, HashMap<String, Boolean> selectedCompanies, HashMap<String, Boolean> selectedPlatforms)
+    public GameFilterDTO(String searchText, HashMap<String, Boolean> selectedGenres, HashMap<String, Boolean> selectedCompanies, HashMap<String, Boolean> selectedPlatforms, Double preciomax, Double preciomin)
     {
         this.searchText = searchText;
         this.selectedGenres = selectedGenres;
         this.selectedCompanies = selectedCompanies;
         this.selectedPlatforms = selectedPlatforms;
+        this.preciomax = preciomax;
+        this.preciomin = preciomin;
     }
 
     public String getSearchText() {
@@ -50,5 +55,21 @@ public class GameFilterDTO
 
     public void setSelectedPlatforms(HashMap<String,Boolean> selectedPlatforms) {
         this.selectedPlatforms = selectedPlatforms;
+    }
+
+    public Double getPreciomin() {
+        return preciomin;
+    }
+
+    public void setPreciomin(Double preciomin) {
+        this.preciomin = preciomin;
+    }
+
+    public Double getPreciomax() {
+        return preciomax;
+    }
+
+    public void setPreciomax(Double preciomax) {
+        this.preciomax = preciomax;
     }
 }

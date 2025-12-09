@@ -65,6 +65,28 @@ public class GameQueryAssembler extends DBConnection
             predicates.add(platformIn);
         }
 
+        Join<Videogame, GamesPlatforms> priceJoin = gameRoot.join("plataformasAsociadas");
+
+        Double minPrice = filters.getPreciomax();
+        Double maxPrice = filters.getPreciomin();
+
+        if (minPrice != null && minPrice > 0) {
+            Predicate minPredicate = cb.greaterThanOrEqualTo(
+                    priceJoin.get("precio_juego"),
+                    minPrice
+            );
+            predicates.add(minPredicate);
+        }
+
+        if (maxPrice != null && maxPrice < 10000)
+        {
+            Predicate maxPredicate = cb.lessThanOrEqualTo(
+                    priceJoin.get("precio_juego"),
+                    maxPrice
+            );
+            predicates.add(maxPredicate);
+        }
+
         if (!predicates.isEmpty())
         {
             cq.where(cb.and(predicates.toArray(new Predicate[0])));
