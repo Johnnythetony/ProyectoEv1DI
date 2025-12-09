@@ -1,19 +1,22 @@
 package com.liceolapaz.dam.proyectoev1di.DTO;
 
-import com.liceolapaz.dam.proyectoev1di.Entities.Company;
+import com.liceolapaz.dam.proyectoev1di.Entities.Categoria;
+
+import java.util.HashMap;
 
 public class PrivateVideogameDTO
 {
     private String titulo;
     private String genero;
-    private Company companhia;
+    private Categoria categoria;
     private String portada;
 
-    public PrivateVideogameDTO(String titulo, String genero, Company companhia, String portada) {
+    public PrivateVideogameDTO(String titulo, String genero, String portada, Categoria categoria)
+    {
         this.titulo = titulo;
         this.genero = genero;
-        this.companhia = companhia;
         this.portada = portada;
+        this.categoria = categoria;
     }
 
     public String getTitulo() {
@@ -32,19 +35,19 @@ public class PrivateVideogameDTO
         this.genero = genero;
     }
 
-    public Company getCompanhia() {
-        return companhia;
-    }
-
-    public void setCompanhia(Company companhia) {
-        this.companhia = companhia;
-    }
-
     public String getPortada() {
         return portada;
     }
 
     public void setPortada(String portada) {
         this.portada = portada;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

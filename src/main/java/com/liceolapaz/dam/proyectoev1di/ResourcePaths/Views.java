@@ -14,7 +14,9 @@ public enum Views
     USERLIBRARY("userlibrary-view.fxml"),
     CREATEUSER("admincreateuser-view.fxml"),
     ADMINUSER("adminuser-view.fxml"),
-    ADMINLIBRARY("adminlibrary-view.fxml");
+    ADMINLIBRARY("adminlibrary-view.fxml"),
+    ITEMDETAIL("gamedetail-view.fxml"),
+    REVIEWCONTAINER("review-view.fxml");
 
 
     private final String fxml;

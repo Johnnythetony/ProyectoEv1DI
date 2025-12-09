@@ -1,6 +1,8 @@
 package com.liceolapaz.dam.proyectoev1di;
 
+import com.liceolapaz.dam.proyectoev1di.Controllers.UserMenuController;
 import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
+import com.liceolapaz.dam.proyectoev1di.DTO.VideogameDTO;
 import com.liceolapaz.dam.proyectoev1di.Services.UserService;
 
 import java.util.LinkedList;
@@ -10,6 +12,10 @@ public class SessionManager
     private static SessionManager INSTANCE;
 
     private UserDTO cur_user;
+
+    private VideogameDTO current_game;
+
+    private UserMenuController user_menu;
 
     private LinkedList<String> previous_views = new LinkedList<String>();
 
@@ -22,6 +28,16 @@ public class SessionManager
             INSTANCE = new SessionManager();
         }
         return INSTANCE;
+    }
+
+    public UserMenuController getUserMenuController()
+    {
+        return this.user_menu;
+    }
+
+    public void setUserMenuController(UserMenuController user_menu)
+    {
+        this.user_menu = user_menu;
     }
 
     public void setUser(UserDTO user)
@@ -60,5 +76,13 @@ public class SessionManager
     public boolean userIsAdmin()
     {
         return user_service.isAdmin(cur_user.getUsername());
+    }
+
+    public VideogameDTO getCurrent_game() {
+        return current_game;
+    }
+
+    public void setCurrent_game(VideogameDTO current_game) {
+        this.current_game = current_game;
     }
 }

@@ -2,7 +2,7 @@ package com.liceolapaz.dam.proyectoev1di.Entities;
 
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "videojuegos")
@@ -14,6 +14,9 @@ public class Videogame
     @Column(unique = true)
     private String titulo;
     private String genero;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "categoria")
+    private Categoria category;
     private String portada;
 
     @ManyToOne
@@ -21,19 +24,20 @@ public class Videogame
     private Company companhia;
 
     @OneToMany(mappedBy = "videogame", cascade = CascadeType.ALL)
-    private List<GamesPlatforms> gamesPlatforms;
+    private Set<GamesPlatforms> gamesPlatforms;
 
     @OneToMany(mappedBy = "videojuego", cascade = CascadeType.ALL)
-    private List<Backlog> backlog;
+    private Set<Backlog> backlog;
 
     public Videogame() {}
 
-    public Videogame(Long id, String titulo, String genero, String portada, Company companhia, List<GamesPlatforms> gamesPlatforms, List<Backlog> backlog) {
+    public Videogame(Long id, String titulo, String genero, String portada,Categoria category, Company companhia, Set<GamesPlatforms> gamesPlatforms, Set<Backlog> backlog) {
         this.id = id;
         this.titulo = titulo;
         this.genero = genero;
         this.portada = portada;
         this.companhia = companhia;
+        this.category = category;
         this.gamesPlatforms = gamesPlatforms;
         this.backlog = backlog;
     }
@@ -78,19 +82,27 @@ public class Videogame
         this.companhia = companhia;
     }
 
-    public List<GamesPlatforms> getGamesPlatforms() {
+    public Set<GamesPlatforms> getGamesPlatforms() {
         return gamesPlatforms;
     }
 
-    public void setGamesPlatforms(List<GamesPlatforms> gamesPlatforms) {
+    public void setGamesPlatforms(Set<GamesPlatforms> gamesPlatforms) {
         this.gamesPlatforms = gamesPlatforms;
     }
 
-    public List<Backlog> getBacklog() {
+    public Set<Backlog> getBacklog() {
         return backlog;
     }
 
-    public void setBacklog(List<Backlog> backlog) {
+    public void setBacklog(Set<Backlog> backlog) {
         this.backlog = backlog;
+    }
+
+    public Categoria getCategory() {
+        return category;
+    }
+
+    public void setCategory(Categoria category) {
+        this.category = category;
     }
 }

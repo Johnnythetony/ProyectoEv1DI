@@ -2,7 +2,9 @@ package com.liceolapaz.dam.proyectoev1di.Services;
 
 import com.liceolapaz.dam.proyectoev1di.DBConnectivity.DBConnection;
 import com.liceolapaz.dam.proyectoev1di.DTO.GameFilterDTO;
+import com.liceolapaz.dam.proyectoev1di.Entities.Backlog;
 import com.liceolapaz.dam.proyectoev1di.Entities.Company;
+import com.liceolapaz.dam.proyectoev1di.Entities.GamesPlatforms;
 import com.liceolapaz.dam.proyectoev1di.Entities.Videogame;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.criteria.*;
@@ -73,6 +75,28 @@ public class GameQueryAssembler extends DBConnection
         cq.distinct(true);
 
         cq.orderBy(cb.asc(gameRoot.get("titulo")));
+
+        return cq;
+    }
+
+    public CriteriaQuery<Videogame> buildDetailsQuery(EntityManager em, String gameTitle)
+    {
+        cb = em.getCriteriaBuilder();
+        cq = cb.createQuery(Videogame.class);
+        Root<Videogame> gameRoot = cq.from(Videogame.class);
+
+        gameRoot.fetch("companhia", JoinType.LEFT);
+
+        Fetch<Videogame, GamesPlatforms> vpFetch = gameRoot.fetch("gamesPlatforms", JoinType.LEFT);
+        vpFetch.fetch("plataforma", JoinType.LEFT);
+
+        Fetch<Videogame, Backlog> ubFetch = gameRoot.fetch("backlog", JoinType.LEFT);
+        ubFetch.fetch("usuario", JoinType.LEFT);
+
+        Predicate whereTitle = cb.equal(gameRoot.get("titulo"), gameTitle);
+        cq.where(whereTitle);
+
+        cq.select(gameRoot).distinct(true);
 
         return cq;
     }

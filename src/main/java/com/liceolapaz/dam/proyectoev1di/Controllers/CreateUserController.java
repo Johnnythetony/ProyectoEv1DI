@@ -24,14 +24,6 @@ public class CreateUserController extends RegisterController
                     usernameTF.getText(),
                     emailTF.getText(),
                     passwordPF.getText()));
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.initStyle(StageStyle.TRANSPARENT);
-            alert.setContentText("Usuario creado con éxito");
-            alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource(Stylesheets.DEFAULT.getResource_path()).toExternalForm());
-
-            alert.showAndWait();
-
             ((Stage) usernameTF.getScene().getWindow()).close();
         }
         else

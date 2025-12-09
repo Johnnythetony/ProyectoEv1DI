@@ -50,7 +50,7 @@
                   <AnchorPane fx:id="containerPane" prefHeight="200.0" prefWidth="200.0" />
                   <AnchorPane fx:id="navAP" maxHeight="200.0" maxWidth="40.0" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="40.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="80.0" spacing="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="50.0" spacing="20.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#returnToPreviousView" style="-fx-background-radius: 50;" text="&lt;">
                                  <font>

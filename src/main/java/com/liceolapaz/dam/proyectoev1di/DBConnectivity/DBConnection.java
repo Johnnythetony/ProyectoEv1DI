@@ -2,6 +2,8 @@ package com.liceolapaz.dam.proyectoev1di.DBConnectivity;
 
 import com.liceolapaz.dam.proyectoev1di.Entities.*;
 import io.github.cdimascio.dotenv.Dotenv;
+
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

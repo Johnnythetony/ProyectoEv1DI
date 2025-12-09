@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Menu;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
@@ -31,11 +32,15 @@ public class UserMenuController implements Initializable
     @FXML
     private AnchorPane navAP;
 
+    @FXML
+    private ProgressIndicator taskPI;
+
     private Debounce db_return_button;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        SessionManager.getInstance().setUserMenuController(this);
         ViewHandler.setResizableStage(true);
         my_accountM.setText(SessionManager.getInstance().getUser().getUsername());
         db_return_button = new Debounce();
@@ -77,6 +82,20 @@ public class UserMenuController implements Initializable
         AnchorPane.setBottomAnchor(containerPane.getChildren().getFirst(), 0.0);
         AnchorPane.setLeftAnchor(containerPane.getChildren().getFirst(), 0.0);
         AnchorPane.setRightAnchor(containerPane.getChildren().getFirst(), 0.0);
+    }
+
+    public void activateIndicator(boolean active)
+    {
+        if(active)
+        {
+            taskPI.setVisible(true);
+            taskPI.setDisable(false);
+            taskPI.setProgress(-1);
+        }
+        else
+        {
+            taskPI.setVisible(false);
+        }
     }
 
     @FXML
@@ -137,5 +156,10 @@ public class UserMenuController implements Initializable
     public void returnToPreviousView(ActionEvent actionEvent)
     {
         db_return_button.debounce();
+    }
+
+    public void setItemDetailView()
+    {
+        setPaneView(Views.ITEMDETAIL.getFXML());
     }
 }

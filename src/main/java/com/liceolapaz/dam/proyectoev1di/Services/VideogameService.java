@@ -7,15 +7,21 @@ import com.liceolapaz.dam.proyectoev1di.DTO.PrivateVideogameDTO;
 import com.liceolapaz.dam.proyectoev1di.DTO.VideogameDTO;
 import com.liceolapaz.dam.proyectoev1di.Entities.Videogame;
 import com.liceolapaz.dam.proyectoev1di.Mapper.VideogameMapper;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class VideogameService extends DBConnection implements VideogameDAO
 {
+    private GameQueryAssembler gqa = new GameQueryAssembler();
+
     @Override
     public void createVideogame(PrivateVideogameDTO videogame)
     {
@@ -70,6 +76,19 @@ public class VideogameService extends DBConnection implements VideogameDAO
         return VideogameMapper.INSTANCE.DAOtoDTO(game);
     }
 
+    public PrivateVideogameDTO getVideogameInfo(String titulo)
+    {
+        Videogame game;
+
+        initTransaction();
+
+        game = getSession().createQuery(criteriaQueryGame(titulo)).getSingleResult();
+
+        commitTransaction();
+
+        return VideogameMapper.INSTANCE.DAOtoPrivateDTO(game);
+    }
+
     public ArrayList<String> getGenres()
     {
         ArrayList<String> genres;
@@ -117,10 +136,40 @@ public class VideogameService extends DBConnection implements VideogameDAO
 
     public List<VideogameDTO> getFiteredGames(GameFilterDTO filters)
     {
-        GameQueryAssembler gqa = new GameQueryAssembler();
+        List<VideogameDTO> juegos;
+
+        initTransaction();
 
         CriteriaQuery<Videogame> cq = gqa.buildQuery(getSession(), filters);
 
-        return getSession().createQuery(cq).getResultList().stream().map(VideogameMapper.INSTANCE::DAOtoDTO).toList();
+        juegos = getSession().createQuery(cq).getResultList().stream().map(VideogameMapper.INSTANCE::DAOtoDTO).toList();
+
+        commitTransaction();
+
+        return juegos;
+    }
+
+    public Videogame getVideogameDetails(String gameTitle)
+    {
+        Videogame videogame;
+        initTransaction();
+        try
+        {
+            CriteriaQuery<Videogame> cq = gqa.buildDetailsQuery(getSession(), gameTitle);
+
+            TypedQuery<Videogame> query = getSession().createQuery(cq);
+
+            videogame = query.getSingleResult();
+
+            commitTransaction();
+
+            return videogame;
+
+        }
+        catch (NoResultException e)
+        {
+            commitTransaction();
+            return null;
+        }
     }
 }

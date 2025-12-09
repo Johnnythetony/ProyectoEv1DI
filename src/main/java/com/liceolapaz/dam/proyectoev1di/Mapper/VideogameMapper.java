@@ -15,6 +15,7 @@ public interface VideogameMapper
     Videogame DTOtoDAO( VideogameDTO videogame_dto );
     VideogameDTO DAOtoDTO( Videogame videogame );
     Videogame privateDTOtoDAO( PrivateVideogameDTO videogame_dto );
+    PrivateVideogameDTO DAOtoPrivateDTO( Videogame videogame );
 
     void updateFromModel( VideogameDTO videogame_dto, @MappingTarget Videogame videogame );
 }

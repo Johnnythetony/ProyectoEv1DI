@@ -80,4 +80,20 @@ public class Backlog
     public void setFecha_resenha(LocalDate fecha_resenha) {
         this.fecha_resenha = fecha_resenha;
     }
+
+    public User getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
+    }
+
+    public Videogame getVideojuego() {
+        return videojuego;
+    }
+
+    public void setVideojuego(Videogame videojuego) {
+        this.videojuego = videojuego;
+    }
 }

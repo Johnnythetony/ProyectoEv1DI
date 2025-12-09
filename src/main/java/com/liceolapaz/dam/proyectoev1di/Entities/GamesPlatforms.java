@@ -37,4 +37,20 @@ public class GamesPlatforms
     public void setPrecio_juego(Float precio_juego) {
         this.precio_juego = precio_juego;
     }
+
+    public Platform getPlataforma() {
+        return plataforma;
+    }
+
+    public void setPlataforma(Platform plataforma) {
+        this.plataforma = plataforma;
+    }
+
+    public Videogame getVideogame() {
+        return videogame;
+    }
+
+    public void setVideogame(Videogame videogame) {
+        this.videogame = videogame;
+    }
 }
