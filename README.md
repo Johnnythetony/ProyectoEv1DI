@@ -30,7 +30,7 @@ Technologies used: OpenSSL, JPA/Hibernate, JavaFX, DotEnv, MapStruct, jBcrypt, M
 
 - Next up, the project uses Dotenv to manage Hibernate config data, so you have to create a file at the resources folder named ".env"
 - Copy the contents of the file ".envExample" to ".env"
-- Replace the text in brackets (brackets included) with your own data.
+- Replace the text in brackets (brackets included) with your own data. (IMPORTANT: The hostname in DB_URL must be "localhost" due to the certificates being generated using it as CN)
 - At the "TRUSTSTORE_PASSWORD" field, paste "811JxT7n8Mv"
   
 ## Ensuring SSL conectivity
