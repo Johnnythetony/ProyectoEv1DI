@@ -3,6 +3,7 @@ This sample proyect is a personal management desktop app based on the popular we
 
 Users can manage and organize the titles they want to play, the ones they are playing and the ones already finished, being able to rate and review them, also showing the hours spent playing at the time of rating.
 
+Technologies used: OpenSSL, JPA/Hibernate, JavaFX, DotEnv, MapStruct, jBcrypt, MySQL, WAMP, Git
 
 # Requirements
 
