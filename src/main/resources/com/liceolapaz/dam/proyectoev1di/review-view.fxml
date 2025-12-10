@@ -3,6 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <BorderPane maxWidth="-Infinity" minWidth="-Infinity" prefWidth="500.0" style="-fx-border-width: 3; -fx-border-color: #1a202c;" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.liceolapaz.dam.proyectoev1di.Controllers.ReviewContainerController">
    <top>
@@ -10,10 +11,22 @@
          <children>
             <HBox alignment="BOTTOM_LEFT" fillHeight="false" nodeOrientation="LEFT_TO_RIGHT" prefWidth="200.0" spacing="60.0">
                <children>
-                  <Label fx:id="puntuacionL" text="Puntuacion" wrapText="true" />
-                  <Label fx:id="duracionL" text="Duracion" wrapText="true" />
-                  <Label fx:id="fechaL" text="Fecha de reseña" wrapText="true" />
-                  <Label fx:id="usernameL" text="Usuario" wrapText="true" />
+                  <Label fx:id="puntuacionL" text="Puntuacion" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font></Label>
+                  <Label fx:id="duracionL" text="Duracion" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Label fx:id="fechaL" text="Fecha de reseña" wrapText="true">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Label fx:id="usernameL" text="Usuario" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="10.0" />
+                     </font></Label>
                </children>
                <padding>
                   <Insets left="5.0" />
@@ -24,11 +37,11 @@
       </VBox>
    </top>
    <center>
-      <Label fx:id="reviewTA" BorderPane.alignment="TOP_CENTER">
+      <TextArea fx:id="reviewTA" editable="false" wrapText="true" BorderPane.alignment="TOP_CENTER">
          <BorderPane.margin>
             <Insets top="10.0" />
          </BorderPane.margin>
-      </Label>
+      </TextArea>
    </center>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

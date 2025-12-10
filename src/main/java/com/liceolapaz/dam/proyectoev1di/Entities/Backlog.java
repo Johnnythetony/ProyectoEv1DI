@@ -12,9 +12,9 @@ public class Backlog
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String resenha;
-    private short valoracion;
+    private Short valoracion;
     private String estado;
-    private float duracion;
+    private Float duracion;
     private LocalDate fecha_resenha;
 
     @ManyToOne
@@ -27,7 +27,7 @@ public class Backlog
 
     public Backlog() {}
 
-    public Backlog(Long id,String resenha, short valoracion, String estado, float duracion, LocalDate fecha_resenha)
+    public Backlog(Long id,String resenha, Short valoracion, String estado, Float duracion, LocalDate fecha_resenha)
     {
         this.id = id;
         this.resenha = resenha;
@@ -49,11 +49,11 @@ public class Backlog
         this.resenha = resenha;
     }
 
-    public short getValoracion() {
+    public Short getValoracion() {
         return valoracion;
     }
 
-    public void setValoracion(short valoracion) {
+    public void setValoracion(Short valoracion) {
         this.valoracion = valoracion;
     }
 
@@ -65,11 +65,11 @@ public class Backlog
         this.estado = estado;
     }
 
-    public float getDuracion() {
+    public Float getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(float duracion) {
+    public void setDuracion(Float duracion) {
         this.duracion = duracion;
     }
 

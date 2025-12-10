@@ -1,8 +1,10 @@
 package com.liceolapaz.dam.proyectoev1di.Controllers;
 
 import com.liceolapaz.dam.proyectoev1di.DTO.PrivateUserDTO;
+import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
 import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Stylesheets;
 import com.liceolapaz.dam.proyectoev1di.Services.UserService;
+import com.liceolapaz.dam.proyectoev1di.SessionManager;
 import com.liceolapaz.dam.proyectoev1di.ViewHandler;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
@@ -24,6 +26,8 @@ public class CreateUserController extends RegisterController
                     usernameTF.getText(),
                     emailTF.getText(),
                     passwordPF.getText()));
+
+            SessionManager.getInstance().getAdmin_user_list().add(new UserDTO(usernameTF.getText(), emailTF.getText()));
             ((Stage) usernameTF.getScene().getWindow()).close();
         }
         else

@@ -1,15 +1,19 @@
 package com.liceolapaz.dam.proyectoev1di.Controllers;
 
 import com.liceolapaz.dam.proyectoev1di.DTO.PrivateUserDTO;
+import com.liceolapaz.dam.proyectoev1di.ResourcePaths.Stylesheets;
 import com.liceolapaz.dam.proyectoev1di.Services.UserService;
 import com.liceolapaz.dam.proyectoev1di.SessionManager;
 import com.liceolapaz.dam.proyectoev1di.Utils.Debounce;
+import com.liceolapaz.dam.proyectoev1di.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,41 +21,41 @@ import java.util.ResourceBundle;
 public class AccountViewController implements Initializable
 {
     @FXML
-    private Label usernameL;
+    protected Label usernameL;
 
     @FXML
-    private Label mailL;
+    protected Label mailL;
 
     @FXML
-    private TextField usernameTF;
+    protected TextField usernameTF;
 
     @FXML
-    private TextField emailTF;
+    protected TextField emailTF;
 
     @FXML
-    private PasswordField passwordPF;
+    protected PasswordField passwordPF;
 
     @FXML
-    private PasswordField repeat_passwordPF;
+    protected PasswordField repeat_passwordPF;
 
     @FXML
-    private Label passworderrmsgL;
+    protected Label passworderrmsgL;
 
     @FXML
-    private Label usernameerrmsgL;
+    protected Label usernameerrmsgL;
 
     @FXML
-    private Label mailerrmsgL;
+    protected Label mailerrmsgL;
 
     @FXML
-    private Label repeat_passworderrmsgL;
+    protected Label repeat_passworderrmsgL;
 
     @FXML
-    private Label submiterrmsgL;
+    protected Label submiterrmsgL;
 
-    private final String PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*\\d).{8,50}$";
+    protected final String PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*\\d).{8,50}$";
 
-    private UserService user_service = new UserService();
+    protected UserService user_service = new UserService();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -97,7 +101,7 @@ public class AccountViewController implements Initializable
         }
     }
 
-    private void validatePassword(String newValue)
+    protected void validatePassword(String newValue)
     {
         if(newValue.matches(PASSWORD_REGEX))
         {
@@ -157,10 +161,21 @@ public class AccountViewController implements Initializable
         else
         {
             user_service.updateUser(new PrivateUserDTO(usernameTF.getText(), emailTF.getText(), passwordPF.getText()));
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.initStyle(StageStyle.TRANSPARENT);
+            alert.setContentText("Usuario modificado correctamente");
+            alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource(Stylesheets.DEFAULT.getResource_path()).toExternalForm());
+
+            alert.showAndWait();
         }
     }
 
     public void cleanForm(ActionEvent actionEvent)
     {
+        usernameTF.setText("");
+        emailTF.setText("");
+        passwordPF.setText("");
+        repeat_passwordPF.setText("");
     }
 }

@@ -6,10 +6,15 @@ import com.liceolapaz.dam.proyectoev1di.DTO.PrivateUserDTO;
 import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
 import com.liceolapaz.dam.proyectoev1di.Entities.User;
 import com.liceolapaz.dam.proyectoev1di.Mapper.UserMapper;
+import com.liceolapaz.dam.proyectoev1di.Mapper.VideogameMapper;
 import com.liceolapaz.dam.proyectoev1di.Utils.HashUtil;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService extends DBConnection implements UserDAO
 {
@@ -153,6 +158,30 @@ public class UserService extends DBConnection implements UserDAO
         commitTransaction();
 
         return user_is_admin;
+    }
+
+    public List<UserDTO> retrieveUsers(String username)
+    {
+        List<UserDTO> users;
+
+        initTransaction();
+
+        CriteriaBuilder cb = getSession().getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+
+        Root<User> user_root = cq.from(User.class);
+
+        cq.select(user_root);
+
+        String searchPattern = "%" + username + "%";
+
+        cq.where(cb.like(cb.lower(user_root.get("username")), searchPattern));
+
+        users = getSession().createQuery(cq).getResultList().stream().map(UserMapper.INSTANCE::DAOtoDTO).toList();
+
+        commitTransaction();
+
+        return users;
     }
 
     private CriteriaQuery<User> criteriaQueryUser(String username)

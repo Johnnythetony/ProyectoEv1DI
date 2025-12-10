@@ -12,7 +12,7 @@ import java.util.ResourceBundle;
 public class ReviewContainerController implements Initializable
 {
     @FXML
-    private Label reviewTA;
+    private TextArea reviewTA;
 
     @FXML
     private Label puntuacionL;
@@ -33,8 +33,24 @@ public class ReviewContainerController implements Initializable
 
     public void setReviewData(Backlog resenha)
     {
-        reviewTA.setText(resenha.getResenha());
-        puntuacionL.setText("Puntuación:\n"+String.valueOf(resenha.getValoracion())+"/10");
+        if(resenha.getResenha() == null)
+        {
+            reviewTA.setText("Sin reseña");
+        }
+        else
+        {
+            reviewTA.setText(resenha.getResenha());
+        }
+
+        if(resenha.getValoracion() == null)
+        {
+            puntuacionL.setText("Sin valoracion");
+        }
+        else
+        {
+            puntuacionL.setText("Puntuación:\n"+resenha.getValoracion()+"/10");
+        }
+
         duracionL.setText("Horas jugadas:\n"+resenha.getDuracion());
         fechaL.setText("Fecha creación:\n"+resenha.getFecha_resenha());
         usernameL.setText(resenha.getUsuario().getUsername());

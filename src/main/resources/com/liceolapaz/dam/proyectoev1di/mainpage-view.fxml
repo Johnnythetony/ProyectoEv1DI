@@ -15,14 +15,44 @@
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
                   </Label>
                   <Separator prefWidth="200.0" />
+                  <Label fx:id="resultsL" text="Resultados">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                   <TextField fx:id="searchbarTF" promptText="Título, compañia, genero...">
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Filtro por precios" />
+                        <HBox spacing="10.0">
+                           <children>
+                              <RadioButton fx:id="nopricenotshowRB" mnemonicParsing="false" text="No mostrar">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </RadioButton>
+                              <RadioButton fx:id="nopriceshowRB" mnemonicParsing="false" selected="true" text="Mostrar">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="pmaxVB">
                      <children>
                         <Label text="Precio Máximo" />
                         <HBox fx:id="priceHB" alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="200.0" spacing="5.0">
@@ -43,7 +73,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </VBox>
-                  <VBox>
+                  <VBox fx:id="pminVB">
                      <children>
                         <Label text="Precio Mínimo" />
                         <HBox fx:id="priceHB1" alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="200.0" spacing="5.0">

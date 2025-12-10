@@ -25,15 +25,15 @@ public class GamesPlatformsService extends DBConnection implements GamesPlatform
 
     }
 
-    public Double getPriceLimit(boolean is_max)
+    public Float getPriceLimit(boolean is_max)
     {
-        Double result = null;
+        Float result = null;
 
-        initTransaction();
         try
         {
+            initTransaction();
             CriteriaBuilder cb = getSession().getCriteriaBuilder();
-            CriteriaQuery<Double> cq = cb.createQuery(Double.class);
+            CriteriaQuery<Float> cq = cb.createQuery(Float.class);
             Root<GamesPlatforms> vpRoot = cq.from(GamesPlatforms.class);
 
             if (is_max)
@@ -44,16 +44,14 @@ public class GamesPlatformsService extends DBConnection implements GamesPlatform
             {
                 cq.select(cb.min(vpRoot.get("precio_juego")));
             }
-
-            result = getSession().createQuery(cq).getSingleResult();
-
+            result = getSession().createQuery(cq).getResultList().getFirst();
+            commitTransaction();
         }
         catch (Exception e)
         {
-            return is_max ? 100.0 : 0.0;
+            rollbackTransaction();
+            return is_max ? 100.0f : 0.0f;
         }
-
-        commitTransaction();
-        return result != null ? result : (is_max ? 100.0 : 0.0);
+        return result != null ? result : (is_max ? 100.0f : 0.0f);
     }
 }

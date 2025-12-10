@@ -63,6 +63,21 @@ public class MainPageController implements Initializable
     @FXML
     private Slider pminS;
 
+    @FXML
+    private RadioButton nopriceshowRB;
+
+    @FXML
+    private RadioButton nopricenotshowRB;
+
+    @FXML
+    private VBox pmaxVB;
+
+    @FXML
+    private VBox pminVB;
+
+    @FXML
+    private Label resultsL;
+
     private GameFilterDTO gameFilters;
 
     private VideogameService vg_service = new VideogameService();
@@ -74,6 +89,33 @@ public class MainPageController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
+        ToggleGroup unpricedToggleGroup = new ToggleGroup();
+        nopriceshowRB.setToggleGroup(unpricedToggleGroup);
+        nopricenotshowRB.setToggleGroup(unpricedToggleGroup);
+
+        nopriceshowRB.setSelected(true);
+
+        unpricedToggleGroup.selectedToggleProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                if(newVal == nopriceshowRB)
+                {
+                    gameFilters.setNoprice(true);
+                    pmaxVB.setDisable(false);
+                    pminVB.setDisable(false);
+                }
+                else
+                {
+                    gameFilters.setNoprice(false);
+                    pmaxVB.setDisable(true);
+                    pminVB.setDisable(true);
+                }
+                applyFilters();
+            }
+        });
+
+        pmaxS.setMax(gp_service.getPriceLimit(true));
+        pminS.setMin(gp_service.getPriceLimit(false));
+
         pminL.textProperty().bind(
                 Bindings.createStringBinding(
                         () -> String.valueOf((int) pminS.getValue()),
@@ -88,6 +130,8 @@ public class MainPageController implements Initializable
                 )
         );
 
+
+
         pminS.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal.doubleValue() > pmaxS.getValue()) {
                 pminS.setValue(pmaxS.getValue());
@@ -100,8 +144,17 @@ public class MainPageController implements Initializable
             }
         });
 
-        pmaxS.setMax(gp_service.getPriceLimit(true));
-        pminS.setMin(gp_service.getPriceLimit(false));
+        pminS.setOnMouseReleased(event -> {
+            gameFilters.setPreciomin(pminS.getValue());
+            gameFilters.setPreciomax(pmaxS.getValue());
+            applyFilters();
+        });
+
+        pmaxS.setOnMouseReleased(event -> {
+            gameFilters.setPreciomin(pminS.getValue());
+            gameFilters.setPreciomax(pmaxS.getValue());
+            applyFilters();
+        });
 
         pminS.setValue(pminS.getMin());
         pmaxS.setValue(pmaxS.getMax());
@@ -110,7 +163,7 @@ public class MainPageController implements Initializable
         ArrayList<String> companies = vg_service.getCompanies();
         ArrayList<String> platforms = vg_service.getPlatforms();
 
-        gameFilters = new GameFilterDTO("", new HashMap<>(), new HashMap<>(), new HashMap<>(), pmaxS.getMax(), pminS.getMin());
+        gameFilters = new GameFilterDTO("", new HashMap<>(), new HashMap<>(), new HashMap<>(), pmaxS.getMax(), pminS.getMin(), true);
 
         for(String genre : genres)
         {
@@ -161,6 +214,7 @@ public class MainPageController implements Initializable
         {
             game_cards.add(createGameCard(game));
         }
+        resultsL.setText("Resultados: "+juegos.size());
 
         listajuegosFP.getChildren().addAll(game_cards);
     }
@@ -223,7 +277,8 @@ public class MainPageController implements Initializable
                 "-fx-background-radius: 5;" +
                 "-fx-padding: 3px 6px;" +
                 "-fx-text-fill: white;" +
-                "-fx-font-size: 18;");
+                "-fx-font-size: 24;" +
+                "-fx-font-weight: bold;");
 
         StackPane gameCard = new StackPane();
         gameCard.setPrefSize(IMAGE_WIDTH, IMAGE_HEIGHT);

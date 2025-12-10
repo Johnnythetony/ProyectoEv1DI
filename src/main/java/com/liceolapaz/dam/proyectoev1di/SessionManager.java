@@ -4,6 +4,7 @@ import com.liceolapaz.dam.proyectoev1di.Controllers.UserMenuController;
 import com.liceolapaz.dam.proyectoev1di.DTO.UserDTO;
 import com.liceolapaz.dam.proyectoev1di.DTO.VideogameDTO;
 import com.liceolapaz.dam.proyectoev1di.Services.UserService;
+import javafx.collections.ObservableList;
 
 import java.util.LinkedList;
 
@@ -13,7 +14,11 @@ public class SessionManager
 
     private UserDTO cur_user;
 
+    private UserDTO user_mod;
+
     private VideogameDTO current_game;
+
+    private ObservableList<UserDTO> admin_user_list;
 
     private UserMenuController user_menu;
 
@@ -84,5 +89,21 @@ public class SessionManager
 
     public void setCurrent_game(VideogameDTO current_game) {
         this.current_game = current_game;
+    }
+
+    public ObservableList<UserDTO> getAdmin_user_list() {
+        return admin_user_list;
+    }
+
+    public void setAdmin_user_list(ObservableList<UserDTO> admin_user_list) {
+        this.admin_user_list = admin_user_list;
+    }
+
+    public UserDTO getUser_mod() {
+        return user_mod;
+    }
+
+    public void setUser_mod(UserDTO user_mod) {
+        this.user_mod = user_mod;
     }
 }

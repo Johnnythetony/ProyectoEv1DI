@@ -13,42 +13,30 @@
                         <Insets />
                     </VBox.margin></Label>
                 <Separator prefWidth="200.0" />
-                <TextField promptText="Nombre de usuario, mail...">
+                <TextField fx:id="searchbarTF" promptText="Nombre de usuario, mail...">
                     <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                     </VBox.margin>
                 </TextField>
                 <Separator prefWidth="200.0" />
-                <FlowPane alignment="CENTER" hgap="10.0" prefHeight="50.0" prefWidth="200.0" vgap="10.0">
-                    <children>
-                        <Button mnemonicParsing="false" onAction="#goToCreateUser" text="Insertar usuario" />
-                        <Button mnemonicParsing="false" text="Modificar seleccionado" />
-                        <Button mnemonicParsing="false" text="Eliminar seleccionado" />
-                    </children>
-                </FlowPane>
+                  <Button mnemonicParsing="false" onAction="#goToCreateUser" text="Insertar usuario" />
             </children>
             <padding>
                 <Insets top="20.0" />
             </padding>
         </VBox>
     </left>
-    <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-            <children>
-                <FlowPane prefHeight="385.0" prefWidth="414.0" rowValignment="TOP">
-                    <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                    </padding>
-                    <children>
-                        <Label text="Lista de usuarios" />
-                    </children>
-                </FlowPane>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                        <Label text="Botones navegacion" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-    </center>
+   <center>
+      <TableView fx:id="userTV" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="usernameTC" prefWidth="133.6000091433525" text="Nombre de usuario" />
+          <TableColumn fx:id="mailTC" prefWidth="93.800048828125" text="Email" />
+            <TableColumn fx:id="modifyTC" prefWidth="87.40000915527344" text="Modificar" />
+            <TableColumn fx:id="deleteTC" prefWidth="80.4000244140625" text="Eliminar" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
 </BorderPane>

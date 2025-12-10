@@ -32,9 +32,6 @@ public class ViewHandler
             alert.setContentText("No se pudo cargar la vista");
             alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource(Stylesheets.DEFAULT.getResource_path()).toExternalForm());
 
-            //ToDo Usar para localizar errores
-            e.printStackTrace();
-
             alert.showAndWait();
         }
         return null;
@@ -56,9 +53,6 @@ public class ViewHandler
             alert.initStyle(StageStyle.TRANSPARENT);
             alert.setContentText("No se pudo cargar la vista");
             alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource(Stylesheets.DEFAULT.getResource_path()).toExternalForm());
-
-            //ToDo Usar para localizar errores
-            e.printStackTrace();
 
             alert.showAndWait();
         }
@@ -101,9 +95,6 @@ public class ViewHandler
             alert.setContentText("No se pudo cargar la ventana");
             alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource(Stylesheets.DEFAULT.getResource_path()).toExternalForm());
 
-            //ToDo Usar para localizar errores
-            e.printStackTrace();
-
             alert.showAndWait();
         }
     }
@@ -136,9 +127,6 @@ public class ViewHandler
             alert.initStyle(StageStyle.TRANSPARENT);
             alert.setContentText("No se pudo cargar la ventana");
             alert.getDialogPane().getStylesheets().add(ViewHandler.class.getResource(Stylesheets.DEFAULT.getResource_path()).toExternalForm());
-
-            //ToDo Usar para localizar errores
-            e.printStackTrace();
 
             alert.showAndWait();
         }

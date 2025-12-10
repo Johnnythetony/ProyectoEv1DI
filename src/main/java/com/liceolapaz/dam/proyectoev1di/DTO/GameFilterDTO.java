@@ -7,6 +7,8 @@ public class GameFilterDTO
     private Double preciomax;
     private Double preciomin;
 
+    private Boolean noprice;
+
     private String searchText;
 
     private HashMap<String, Boolean> selectedGenres;
@@ -15,7 +17,7 @@ public class GameFilterDTO
 
     private HashMap<String, Boolean> selectedPlatforms;
 
-    public GameFilterDTO(String searchText, HashMap<String, Boolean> selectedGenres, HashMap<String, Boolean> selectedCompanies, HashMap<String, Boolean> selectedPlatforms, Double preciomax, Double preciomin)
+    public GameFilterDTO(String searchText, HashMap<String, Boolean> selectedGenres, HashMap<String, Boolean> selectedCompanies, HashMap<String, Boolean> selectedPlatforms, Double preciomax, Double preciomin, Boolean noprice)
     {
         this.searchText = searchText;
         this.selectedGenres = selectedGenres;
@@ -23,6 +25,8 @@ public class GameFilterDTO
         this.selectedPlatforms = selectedPlatforms;
         this.preciomax = preciomax;
         this.preciomin = preciomin;
+        this.noprice = noprice;
+
     }
 
     public String getSearchText() {
@@ -71,5 +75,13 @@ public class GameFilterDTO
 
     public void setPreciomax(Double preciomax) {
         this.preciomax = preciomax;
+    }
+
+    public Boolean getNoprice() {
+        return noprice;
+    }
+
+    public void setNoprice(Boolean noprice) {
+        this.noprice = noprice;
     }
 }

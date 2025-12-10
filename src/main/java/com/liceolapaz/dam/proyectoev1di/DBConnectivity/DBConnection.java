@@ -78,4 +78,11 @@ public class DBConnection
         session.close();
         session = null;
     }
+
+    protected void rollbackTransaction()
+    {
+        getSession().getTransaction().rollback();
+        session.close();
+        session = null;
+    }
 }

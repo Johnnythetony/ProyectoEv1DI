@@ -1,5 +1,6 @@
 package com.liceolapaz.dam.proyectoev1di.Controllers;
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -11,4 +12,7 @@ public class AdminLibraryController implements Initializable
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
     }
+
+    @FXML
+    public void goToCreateGame(){}
 }

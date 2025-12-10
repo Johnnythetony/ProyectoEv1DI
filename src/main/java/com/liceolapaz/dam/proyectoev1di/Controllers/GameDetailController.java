@@ -20,6 +20,8 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class GameDetailController implements Initializable
@@ -48,7 +50,17 @@ public class GameDetailController implements Initializable
     @FXML
     private VBox gamereviewsVB;
 
-    VideogameService vg_service = new VideogameService();
+    @FXML
+    private Label resenhasL;
+
+    @FXML
+    private Label mediaL;
+
+    private VideogameService vg_service = new VideogameService();
+
+    private int num_resenhas = 0;
+    private int num_ratings = 0;
+    private float sum_ratings = 0f;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle)
@@ -71,22 +83,36 @@ public class GameDetailController implements Initializable
 
         for(Backlog b: juego.getBacklog())
         {
-            try
+            if (b.getValoracion() != null)
             {
-                FXMLLoader loader = new FXMLLoader(ViewHandler.class.getResource(Views.REVIEWCONTAINER.getFXML()));
-
-                Node review_container = loader.load();
-
-                ReviewContainerController review_controller = loader.getController();
-
-                review_controller.setReviewData(b);
-
-                gamereviewsVB.getChildren().add(review_container);
+                num_ratings++;
+                sum_ratings += b.getValoracion();
             }
-            catch (IOException e)
+            if (b.getResenha() != null)
             {
-                throw new RuntimeException(e);
+                try
+                {
+                    FXMLLoader loader = new FXMLLoader(ViewHandler.class.getResource(Views.REVIEWCONTAINER.getFXML()));
+
+                    Node review_container = loader.load();
+
+                    ReviewContainerController review_controller = loader.getController();
+
+                    review_controller.setReviewData(b);
+
+                    gamereviewsVB.getChildren().add(review_container);
+
+                    num_resenhas++;
+                }
+                catch (IOException e)
+                {
+                    throw new RuntimeException(e);
+                }
             }
         }
+
+        if (num_ratings == 0) num_ratings++;
+        mediaL.setText("Valoración media: "+String.format("%.2f",(sum_ratings/num_ratings))+"/10");
+        resenhasL.setText("Reseñas totales: "+num_resenhas);
     }
 }
