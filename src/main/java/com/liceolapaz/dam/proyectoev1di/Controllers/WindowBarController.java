@@ -34,7 +34,7 @@ public class WindowBarController implements Initializable
     @FXML
     public void onAppMinimizing(ActionEvent event)
     {
-        Stage stage = (Stage) ((Stage) event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setIconified(true);
     }
 
